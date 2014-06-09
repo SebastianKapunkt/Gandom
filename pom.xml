@@ -3,16 +3,16 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>at.irian.jsfatwork</groupId>
+    <groupId>com.github.fhb-jee-web</groupId>
     <artifactId>helloworld</artifactId>
     <packaging>war</packaging>
-    <version>2.0</version>
-    <name>JSF at Work - Hello World</name>
+    <version>1.0</version>
+    <name>JSF - Hello World</name>
 
     <properties>
-        <myfaces.version>2.2.0-beta</myfaces.version>
-        <mojarra.version>2.2.2</mojarra.version>
-        <jetty.version>8.1.5.v20120716</jetty.version>
+        <myfaces.version>2.2.3</myfaces.version>
+        <mojarra.version>2.2.6</mojarra.version>
+        <jetty.version>8.1.15.v20140411</jetty.version>
     </properties>
 
     <profiles>
@@ -86,8 +86,8 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <configuration>
-                        <source>1.6</source>
-                        <target>1.6</target>
+                        <source>1.7</source>
+                        <target>1.7</target>
                         <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
