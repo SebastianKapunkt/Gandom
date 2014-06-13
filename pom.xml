@@ -4,13 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.fhb-jee-web</groupId>
-    <artifactId>helloworld</artifactId>
+    <artifactId>rangam</artifactId>
     <packaging>war</packaging>
-    <version>1.0</version>
-    <name>JSF - Hello World</name>
+    <version>0.1-SNAPSHOT</version>
+    <name>Rangam</name>
 
     <properties>
-        <myfaces.version>2.2.3</myfaces.version>
         <mojarra.version>2.2.6</mojarra.version>
         <jetty.version>8.1.15.v20140411</jetty.version>
     </properties>
@@ -39,33 +38,10 @@
                 <override-web-xml>src/main/jetty/override-mojarra-web.xml</override-web-xml>
             </properties>
         </profile>
-        <profile>
-            <id>myfaces</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.apache.myfaces.core</groupId>
-                    <artifactId>myfaces-api</artifactId>
-                    <version>${myfaces.version}</version>
-                    <scope>compile</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.myfaces.core</groupId>
-                    <artifactId>myfaces-impl</artifactId>
-                    <version>${myfaces.version}</version>
-                    <scope>compile</scope>
-                </dependency>
-            </dependencies>
-            <properties>
-                <override-web-xml>src/main/jetty/override-myfaces-web.xml</override-web-xml>
-            </properties>
-        </profile>
     </profiles>
 
     <build>
-        <finalName>helloworld</finalName>
+        <finalName>rangam</finalName>
         <defaultGoal>install</defaultGoal>
         <plugins>
             <plugin>
