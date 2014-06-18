@@ -37,4 +37,37 @@ public class Game {
     public void setGenre(String genre) {
         this.genre = genre;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Game)) return false;
+
+        Game game = (Game) o;
+
+        if (genre != null ? !genre.equals(game.genre) : game.genre != null) {
+            return false;
+        }
+        if (!publisher.equals(game.publisher)) return false;
+        if (!title.equals(game.title)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = title.hashCode();
+        result = 31 * result + publisher.hashCode();
+        result = 31 * result + (genre != null ? genre.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Game{");
+        sb.append("title='").append(title).append('\'');
+        sb.append(", publisher='").append(publisher).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }
