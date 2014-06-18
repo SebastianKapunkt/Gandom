@@ -17,7 +17,7 @@ public class MockGameCollectionManager implements Manager {
     private String gameGenres;
 
     public MockGameCollectionManager() {
-        games = generateExampleEntries();
+        games = new TreeSet<>();
     }
 
     public Set<Game> getGames() {
@@ -69,13 +69,5 @@ public class MockGameCollectionManager implements Manager {
 
     public String navigateToAddGame() {
         return "/addGame";
-    }
-
-    private Set<Game> generateExampleEntries() {
-        Set<Game> games = new TreeSet<>();
-        for (int i = 1; i <= 25; i++) {
-            games.add(new Game("Game " + i, "Publisher " + i, "Genre " + i));
-        }
-        return games;
     }
 }
