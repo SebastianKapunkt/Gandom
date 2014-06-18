@@ -56,6 +56,10 @@ public class MockGameCollectionManager implements Manager {
     public String addGame() {
         Game game = new Game(gameTitle, gamePublisher, gameGenres);
         games.add(game);
+        // reset parameters
+        gameTitle = null;
+        gamePublisher = null;
+        gameGenres = null;
         return "/listGames";
     }
 
