@@ -11,8 +11,17 @@
 
     <properties>
         <mojarra.version>2.2.6</mojarra.version>
-        <jetty.version>8.1.15.v20140411</jetty.version>
+        <jetty.version>9.2.1.v20140609</jetty.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.jetty.orbit</groupId>
+            <artifactId>javax.servlet</artifactId>
+            <version>3.0.0.v201112011016</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <profiles>
         <profile>
@@ -45,7 +54,7 @@
         <defaultGoal>install</defaultGoal>
         <plugins>
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.version}</version>
                 <configuration>
