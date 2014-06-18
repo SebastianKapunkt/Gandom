@@ -21,7 +21,7 @@
 
     <!-- Welcome files -->
     <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>listGames.xhtml</welcome-file>
     </welcome-file-list>
 
     <context-param>
