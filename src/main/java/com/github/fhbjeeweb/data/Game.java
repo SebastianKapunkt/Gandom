@@ -1,6 +1,6 @@
 package com.github.fhbjeeweb.data;
 
-public class Game {
+public class Game implements Comparable<Game> {
     private String title;
     private String publisher;
     // TODO: Accept a list of genres per game
@@ -69,5 +69,11 @@ public class Game {
         sb.append(", publisher='").append(publisher).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(Game other) {
+        return String.CASE_INSENSITIVE_ORDER.compare(this.toString(),
+                other.toString());
     }
 }

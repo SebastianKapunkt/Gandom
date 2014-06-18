@@ -4,13 +4,13 @@ import com.github.fhbjeeweb.data.Game;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 @ManagedBean(name = "manager")
 @SessionScoped
 public class MockGameCollectionManager implements Manager {
-    private List<Game> games;
+    private Set<Game> games;
     // Properties used by addGame() action when a new game is added to the list
     private String gameTitle;
     private String gamePublisher;
@@ -20,11 +20,11 @@ public class MockGameCollectionManager implements Manager {
         games = generateExampleEntries();
     }
 
-    public List<Game> getGames() {
+    public Set<Game> getGames() {
         return games;
     }
 
-    public void setGames(List<Game> games) {
+    public void setGames(Set<Game> games) {
         this.games = games;
     }
 
@@ -53,7 +53,6 @@ public class MockGameCollectionManager implements Manager {
     }
 
     // JSF Actions
-    // FIXME: Do not add duplicate entries to the list
     public String addGame() {
         Game game = new Game(gameTitle, gamePublisher, gameGenres);
         games.add(game);
@@ -68,8 +67,8 @@ public class MockGameCollectionManager implements Manager {
         return "/addGame";
     }
 
-    private List<Game> generateExampleEntries() {
-        List<Game> games = new ArrayList<>();
+    private Set<Game> generateExampleEntries() {
+        Set<Game> games = new TreeSet<>();
         for (int i = 1; i <= 25; i++) {
             games.add(new Game("Game " + i, "Publisher " + i, "Genre " + i));
         }
