@@ -13,13 +13,16 @@
     <h:form id="form">
         <h:panelGrid id="grid" columns="2">
             <h:outputLabel value="Title:" for="gameTitle"/>
-            <h:inputText id="gameTitle" value="#{manager.gameTitle}"
+            <h:inputText id="gameTitle"
+                         value="#{manager.userInput.gameTitle}"
                          required="true"/>
             <h:outputLabel value="Publisher:" for="gamePublisher"/>
-            <h:inputText id="gamePublisher" value="#{manager.gamePublisher}"
+            <h:inputText id="gamePublisher"
+                         value="#{manager.userInput.gamePublisher}"
                          required="true"/>
             <h:outputLabel value="Genres:" for="gameGenres"/>
-            <h:inputText id="gameGenres" value="#{manager.gameGenres}"/>
+            <h:inputText id="gameGenres"
+                         value="#{manager.userInput.gameGenres}"/>
         </h:panelGrid>
         <h:commandButton id="cancel" value="Cancel" action="#{manager.cancel}"
                          immediate="true"/>
