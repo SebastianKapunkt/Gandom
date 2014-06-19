@@ -30,6 +30,8 @@
             <h:outputText value="#{game.genre}"/>
         </h:column>
     </h:dataTable>
+    <h:outputText value="The game list is empty. Add your first game!"
+                  rendered="#{manager.games.isEmpty()}"/>
     <h:form>
         <h:commandButton id="addGame" value="Add Game"
                          action="#{manager.navigateToAddGame}"/>
