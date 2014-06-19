@@ -39,6 +39,11 @@ public class MockGameCollectionManager implements Manager {
     }
 
     // JSF Actions
+    public String deleteAll() {
+        games.clear();
+        return LIST_ALL_URL;
+    }
+
     public String addGame() {
         Game game = new Game(
                 userInput.get("gameTitle"),

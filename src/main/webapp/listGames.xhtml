@@ -33,6 +33,8 @@
     <h:outputText value="The game list is empty. Add your first game!"
                   rendered="#{manager.games.isEmpty()}"/>
     <h:form>
+        <h:commandButton id="deleteAll" value="Delete All Games"
+                         action="#{manager.deleteAll}"/>
         <h:commandButton id="addGame" value="Add Game"
                          action="#{manager.navigateToAddGame}"/>
     </h:form>
