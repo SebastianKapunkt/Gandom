@@ -12,7 +12,7 @@ public class Game implements Comparable<Game> {
         this.genre = genre;
     }
 
-    public Game() {};
+    public Game() {}
 
     public String getTitle() {
         return title;
