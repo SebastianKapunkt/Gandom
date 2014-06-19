@@ -11,8 +11,8 @@ import java.util.TreeSet;
 @ManagedBean(name = "manager")
 @SessionScoped
 public class MockGameCollectionManager implements Manager {
-    private static final String LIST_ALL_URL = "/listGames";
-    private static final String ADD_GAME_URL = "/addGame";
+    private static final String LIST_GAMES_VIEW_ID = "/listGames";
+    private static final String ADD_GAME_VIEW_ID = "/addGame";
 
     private Set<Game> games;
     private HashMap<String, String> userInput;
@@ -41,7 +41,7 @@ public class MockGameCollectionManager implements Manager {
     // JSF Actions
     public String deleteAll() {
         games.clear();
-        return LIST_ALL_URL;
+        return LIST_GAMES_VIEW_ID;
     }
 
     public String addGame() {
@@ -51,14 +51,14 @@ public class MockGameCollectionManager implements Manager {
                 userInput.get("gameGenres"));
         games.add(game);
         userInput.clear();
-        return LIST_ALL_URL;
+        return LIST_GAMES_VIEW_ID;
     }
 
     public String cancel() {
-        return LIST_ALL_URL;
+        return LIST_GAMES_VIEW_ID;
     }
 
     public String navigateToAddGame() {
-        return ADD_GAME_URL;
+        return ADD_GAME_VIEW_ID;
     }
 }
