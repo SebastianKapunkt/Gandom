@@ -4,12 +4,14 @@ public class Game implements Comparable<Game> {
     private String title;
     private String publisher;
     // TODO: Accept a list of genres per game
-    private String genre;
+    // The String genres is currently expected to hold one or more Genres
+    // seperated by commas
+    private String genres;
 
-    public Game(String title, String publisher, String genre) {
+    public Game(String title, String publisher, String genres) {
         this.title = title;
         this.publisher = publisher;
-        this.genre = genre;
+        this.genres = genres;
     }
 
     public Game() {}
@@ -30,12 +32,12 @@ public class Game implements Comparable<Game> {
         this.publisher = publisher;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getGenres() {
+        return genres;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setGenres(String genres) {
+        this.genres = genres;
     }
 
     @Override
@@ -45,7 +47,7 @@ public class Game implements Comparable<Game> {
 
         Game game = (Game) o;
 
-        if (genre != null ? !genre.equals(game.genre) : game.genre != null) {
+        if (genres != null ? !genres.equals(game.genres) : game.genres != null) {
             return false;
         }
         if (!publisher.equals(game.publisher)) return false;
@@ -58,7 +60,7 @@ public class Game implements Comparable<Game> {
     public int hashCode() {
         int result = title.hashCode();
         result = 31 * result + publisher.hashCode();
-        result = 31 * result + (genre != null ? genre.hashCode() : 0);
+        result = 31 * result + (genres != null ? genres.hashCode() : 0);
         return result;
     }
 
