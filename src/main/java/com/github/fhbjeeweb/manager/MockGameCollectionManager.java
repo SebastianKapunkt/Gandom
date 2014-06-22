@@ -2,15 +2,16 @@ package com.github.fhbjeeweb.manager;
 
 import com.github.fhbjeeweb.data.Game;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.TreeSet;
 
-@ManagedBean(name = "manager")
-@SessionScoped
-public class MockGameCollectionManager implements Manager {
+@Named(value = "manager")
+@javax.enterprise.context.SessionScoped
+public class MockGameCollectionManager implements Manager, Serializable {
+    private static final long serialVersionUID = -3965156883166963384L;
     private static final String LIST_GAMES_VIEW_ID = "/listGames";
     private static final String ADD_GAME_VIEW_ID = "/addGame";
 
