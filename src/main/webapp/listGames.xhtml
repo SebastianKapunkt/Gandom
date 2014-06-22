@@ -9,7 +9,7 @@
     <title>Rangam</title>
 </head>
 <body>
-    <h:dataTable value="#{manager.games}" var="game">
+    <h:dataTable value="#{listGameController.games}" var="game">
         <f:facet name="header">Games</f:facet>
         <h:column>
             <f:facet name="header">
@@ -31,12 +31,12 @@
         </h:column>
     </h:dataTable>
     <h:outputText value="The game list is empty. Add your first game!"
-                  rendered="#{manager.games.isEmpty()}"/>
+                  rendered="#{listGameController.games.isEmpty()}"/>
     <h:form>
         <h:commandButton id="deleteAll" value="Delete All Games"
-                         action="#{manager.deleteAll}"/>
+                         action="#{listGameController.deleteAll}"/>
         <h:commandButton id="addGame" value="Add Game"
-                         action="#{manager.navigateToAddGame}"/>
+                         action="#{listGameController.addGame}"/>
     </h:form>
 </body>
 </html>

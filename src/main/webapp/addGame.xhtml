@@ -14,19 +14,21 @@
         <h:panelGrid id="grid" columns="2">
             <h:outputLabel value="Title:" for="gameTitle"/>
             <h:inputText id="gameTitle"
-                         value="#{manager.userInput.gameTitle}"
+                         value="#{addGameController.game.title}"
                          required="true"/>
             <h:outputLabel value="Publisher:" for="gamePublisher"/>
             <h:inputText id="gamePublisher"
-                         value="#{manager.userInput.gamePublisher}"
+                         value="#{addGameController.game.publisher}"
                          required="true"/>
             <h:outputLabel value="Genres:" for="gameGenres"/>
             <h:inputText id="gameGenres"
-                         value="#{manager.userInput.gameGenres}"/>
+                         value="#{addGameController.game.genres}"/>
         </h:panelGrid>
-        <h:commandButton id="cancel" value="Cancel" action="#{manager.cancel}"
+        <h:commandButton id="cancel" value="Cancel"
+                         action="#{addGameController.cancel}"
                          immediate="true"/>
-        <h:commandButton id="save" value="Save" action="#{manager.addGame}"/>
+        <h:commandButton id="save" value="Save"
+                         action="#{addGameController.save}"/>
     </h:form>
 </h:body>
 </html>
