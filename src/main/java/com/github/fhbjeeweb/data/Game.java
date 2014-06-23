@@ -1,81 +1,72 @@
+/**
+ * Game erbt von BaseEntity
+ *
+ * besitzt eine Many to Many Beziehung zu Genre
+ * und eine Many to One Beziehung zu Publisher
+ *
+ * der Name darf nicht null sein
+ *
+ *
+ * Diese Klassen soll ein Spiel wiederspiegeln. Zu diesem Spielt gibt es
+ * belibig viele Genre und genau einen Publisher.
+ *
+ * */
 package com.github.fhbjeeweb.data;
 
-public class Game implements Comparable<Game> {
-    private String title;
-    private String publisher;
-    // TODO: Accept a list of genres per game
-    // The String genres is currently expected to hold one or more Genres
-    // seperated by commas
-    private String genres;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
-    public Game(String title, String publisher, String genres) {
-        this.title = title;
-        this.publisher = publisher;
-        this.genres = genres;
-    }
+import java.util.HashSet;
+import java.util.Set;
 
-    public Game() {}
+@Entity
+public class Game extends BaseEntity implements Comparable<Game>{
 
-    public String getTitle() {
-        return title;
-    }
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "game_genre",
+            joinColumns = {@JoinColumn(name = "game_id")},
+            inverseJoinColumns = {@JoinColumn(name = "genre_id")})
+    private Set<Genre> genres = new HashSet<Genre>();
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
 
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public String getGenres() {
-        return genres;
-    }
-
-    public void setGenres(String genres) {
-        this.genres = genres;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Game)) return false;
-
-        Game game = (Game) o;
-
-        if (genres != null ? !genres.equals(game.genres) : game.genres != null) {
-            return false;
-        }
-        if (!publisher.equals(game.publisher)) return false;
-        if (!title.equals(game.title)) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = title.hashCode();
-        result = 31 * result + publisher.hashCode();
-        result = 31 * result + (genres != null ? genres.hashCode() : 0);
-        return result;
-    }
-
+    @NotNull(message = "Bitte Name für Game eingeben")
+    private String name;
+    
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Game{");
-        sb.append("title='").append(title).append('\'');
-        sb.append(", publisher='").append(publisher).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return name.toString() + "(" + getId() + ")";
     }
-
+    
     @Override
     public int compareTo(Game other) {
-        return String.CASE_INSENSITIVE_ORDER.compare(this.toString(),
-                other.toString());
+    	return String.CASE_INSENSITIVE_ORDER.compare(name,
+                other.getName());
+    }
+    
+    public Set<Genre> getGenres() {
+    	return genres;
+    }
+    
+    public void setGenres(Set<Genre> genres) {
+    	this.genres = genres;
+    }
+    
+    public Publisher getPublisher() {
+    	return publisher;
+    }
+    
+    public void setPublisher(Publisher publisher) {
+    	this.publisher = publisher;
+    }
+    
+    public String getName() {
+    	return name;
+    }
+    
+    public void setName(String name) {
+    	this.name = name;
     }
 }
