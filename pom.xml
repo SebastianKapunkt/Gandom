@@ -42,7 +42,7 @@
                 <executions>
                     <!-- Deploy MySQL driver -->
                     <execution>
-                        <id>deploy_jdbc_driver</id>
+                        <id>deploy-jdbc-driver</id>
                         <phase>package</phase>
                         <goals>
                             <goal>deploy-artifact</goal>
@@ -53,9 +53,10 @@
                             <name>${mysql.artifactId}-${mysql.driver.version}.jar</name>
                         </configuration>
                     </execution>
-                    <!-- Add datasource to Wildfly config -->
+
+                    <!-- Add datasource to Wildfly configuration -->
                     <execution>
-                        <id>add_datasource</id>
+                        <id>add-datasource</id>
                         <phase>package</phase>
                         <goals>
                             <goal>add-resource</goal>
@@ -68,7 +69,6 @@
                                         <connection-url>${db.jdbc.url}</connection-url>
                                         <jndi-name>${db.jndi.name}</jndi-name>
                                         <enabled>true</enabled>
-                                        <enable>true</enable>
                                         <user-name>${mysql.username}</user-name>
                                         <password>${mysql.password}</password>
                                         <driver-name>${mysql.driver.name}</driver-name>
@@ -78,13 +78,58 @@
                             </resources>
                         </configuration>
                     </execution>
+
                     <!-- Deploy with `mvn install` -->
                     <execution>
-                        <id>deploy_application</id>
+                        <id>deploy-application</id>
                         <phase>install</phase>
                         <goals>
                             <goal>deploy</goal>
                         </goals>
+                    </execution>
+
+                    <!-- Undeploy with `mvn clean` -->
+                    <execution>
+                        <id>undeploy-application</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>undeploy</goal>
+                        </goals>
+                    </execution>
+
+                    <!-- Remove datasource from Wildfly configuration -->
+                    <!-- TODO: Goal execution is not idempotent!
+                               A second invocation of `mvn clean` will fail at this stage
+                               and also not run the undeploy-jdbc-driver goal-->
+                    <execution>
+                        <id>remove-datasource</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>execute-commands</goal>
+                        </goals>
+                        <configuration>
+                            <execute-commands>
+                                <batch>true</batch>
+                                <commands>
+                                    <command>/subsystem=datasources/data-source=${db.datasource.name}:disable()</command>
+                                    <command>/subsystem=datasources/data-source=${db.datasource.name}:remove()</command>
+                                </commands>
+                            </execute-commands>
+                        </configuration>
+                    </execution>
+
+                    <!-- Undeploy MySQL driver -->
+                    <execution>
+                        <id>undeploy-jdbc-driver</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>undeploy-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>${mysql.groupId}</groupId>
+                            <artifactId>${mysql.artifactId}</artifactId>
+                            <name>${mysql.artifactId}-${mysql.driver.version}.jar</name>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
