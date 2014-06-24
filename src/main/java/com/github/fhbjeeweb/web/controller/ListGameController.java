@@ -1,21 +1,22 @@
 package com.github.fhbjeeweb.web.controller;
 
 import com.github.fhbjeeweb.data.Game;
-import com.github.fhbjeeweb.manager.Manager;
+import com.github.fhbjeeweb.manager.GameManager;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.Set;
+
+import java.util.List;
 
 @Named
 @RequestScoped
 public class ListGameController {
     @Inject
-    private Manager manager;
+    private GameManager manager;
 
-    public Set<Game> getGames() {
-        return manager.getGames();
+    public List<Game> getGames() {
+        return manager.readGames();
     }
 
     public String addGame() {
@@ -23,7 +24,7 @@ public class ListGameController {
     }
 
     public String deleteAll() {
-        manager.deleteAllGames();
+//        manager.deleteAllGames();
         return Pages.LIST_GAMES;
     }
 }
