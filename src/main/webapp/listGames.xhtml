@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>Rangam</title>
+</head>
+<body>
+    <h:dataTable value="#{listGameController.games}" var="game">
+        <f:facet name="header">Games</f:facet>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Title"/>
+            </f:facet>
+            <h:outputText value="#{game.title}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Publisher"/>
+            </f:facet>
+            <h:outputText value="#{game.publisher}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Genre"/>
+            </f:facet>
+            <h:outputText value="#{game.genres}"/>
+        </h:column>
+    </h:dataTable>
+    <h:outputText value="The game list is empty. Add your first game!"
+                  rendered="#{listGameController.games.isEmpty()}"/>
+    <h:form>
+        <h:commandButton id="deleteAll" value="Delete All Games"
+                         action="#{listGameController.deleteAll}"/>
+        <h:commandButton id="addGame" value="Add Game"
+                         action="#{listGameController.addGame}"/>
+    </h:form>
+</body>
+</html>
