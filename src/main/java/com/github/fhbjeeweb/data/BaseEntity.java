@@ -12,8 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 @MappedSuperclass
 public abstract class BaseEntity implements Comparable<BaseEntity>{
@@ -21,12 +19,6 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.toString(this,
-				ToStringStyle.MULTI_LINE_STYLE);
-	}
 
     @NotNull(message = "The name must not be empty")
     private String name;
@@ -45,6 +37,11 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().toString() + ": " + name;
     }
 
     @Override
