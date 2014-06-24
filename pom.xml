@@ -21,12 +21,14 @@
         <mysql.driver.version>5.1.29</mysql.driver.version>
         <mysql.driver.name>${mysql.artifactId}-${mysql.driver.version}.jar</mysql.driver.name>
         <!--
-            these paramerters should not go here but in ~/.m2/settings.xml
-            they're here just to give a complete picture
+            These parameters should not go here but in ~/.m2/settings.xml
+            They are here just to give a complete picture
         -->
-        <mysql.username>rangan</mysql.username>
-        <mysql.password>rangan</mysql.password>
-        <db.jdbc.url>jdbc:mysql://127.0.0.1:3306/rangan</db.jdbc.url>
+        <mysql.username>rangam</mysql.username>
+        <mysql.password>rangam</mysql.password>
+        <db.jdbc.url>jdbc:mysql://127.0.0.1:3306/rangam</db.jdbc.url>
+        <db.datasource.name>RangamDS</db.datasource.name>
+        <db.jndi.name>java:jboss/datasources/${db.datasource.name}</db.jndi.name>
     </properties>
 
     <build>
@@ -37,11 +39,8 @@
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>1.0.2.Final</version>
-                <configuration>
-                    <jboss-home>/usr/local/opt/wildfly-as/libexec</jboss-home>
-                </configuration>
                 <executions>
-                    <!-- deploy mysql driver -->
+                    <!-- Deploy MySQL driver -->
                     <execution>
                         <id>deploy_jdbc_driver</id>
                         <phase>package</phase>
@@ -54,7 +53,7 @@
                             <name>${mysql.artifactId}-${mysql.driver.version}.jar</name>
                         </configuration>
                     </execution>
-
+                    <!-- Add datasource to Wildfly config -->
                     <execution>
                         <id>add_datasource</id>
                         <phase>package</phase>
@@ -62,12 +61,12 @@
                             <goal>add-resource</goal>
                         </goals>
                         <configuration>
-                            <address>subsystem=datasources,data-source=RangamDS</address>
+                            <address>subsystem=datasources,data-source=${db.datasource.name}</address>
                             <resources>
                                 <resource>
                                     <properties>
                                         <connection-url>${db.jdbc.url}</connection-url>
-                                        <jndi-name>java:jboss/jdbc/RangamDS</jndi-name>
+                                        <jndi-name>${db.jndi.name}</jndi-name>
                                         <enabled>true</enabled>
                                         <enable>true</enable>
                                         <user-name>${mysql.username}</user-name>
@@ -79,7 +78,7 @@
                             </resources>
                         </configuration>
                     </execution>
-                    <!-- deploy the application -->
+                    <!-- Deploy with `mvn install` -->
                     <execution>
                         <id>deploy_application</id>
                         <phase>install</phase>
