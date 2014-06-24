@@ -15,20 +15,6 @@
         <!-- Maven Compiler Plugin-->
         <maven.compiler.target>1.7</maven.compiler.target>
         <maven.compiler.source>1.7</maven.compiler.source>
-        <!-- Automated JDBC-Driver and Datasource deployment -->
-        <mysql.groupId>mysql</mysql.groupId>
-        <mysql.artifactId>mysql-connector-java</mysql.artifactId>
-        <mysql.driver.version>5.1.29</mysql.driver.version>
-        <mysql.driver.name>${mysql.artifactId}-${mysql.driver.version}.jar</mysql.driver.name>
-        <!--
-            These parameters should not go here but in ~/.m2/settings.xml
-            They are here just to give a complete picture
-        -->
-        <mysql.username>rangam</mysql.username>
-        <mysql.password>rangam</mysql.password>
-        <db.jdbc.url>jdbc:mysql://127.0.0.1:3306/rangam</db.jdbc.url>
-        <db.datasource.name>RangamDS</db.datasource.name>
-        <db.jndi.name>java:jboss/datasources/${db.datasource.name}</db.jndi.name>
     </properties>
 
     <build>
@@ -39,99 +25,6 @@
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>1.0.2.Final</version>
-                <executions>
-                    <!-- Deploy MySQL driver -->
-                    <execution>
-                        <id>deploy-jdbc-driver</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>deploy-artifact</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>${mysql.groupId}</groupId>
-                            <artifactId>${mysql.artifactId}</artifactId>
-                            <name>${mysql.artifactId}-${mysql.driver.version}.jar</name>
-                        </configuration>
-                    </execution>
-
-                    <!-- Add datasource to Wildfly configuration -->
-                    <execution>
-                        <id>add-datasource</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>add-resource</goal>
-                        </goals>
-                        <configuration>
-                            <address>subsystem=datasources,data-source=${db.datasource.name}</address>
-                            <resources>
-                                <resource>
-                                    <properties>
-                                        <connection-url>${db.jdbc.url}</connection-url>
-                                        <jndi-name>${db.jndi.name}</jndi-name>
-                                        <enabled>true</enabled>
-                                        <user-name>${mysql.username}</user-name>
-                                        <password>${mysql.password}</password>
-                                        <driver-name>${mysql.driver.name}</driver-name>
-                                        <use-ccm>false</use-ccm>
-                                    </properties>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-
-                    <!-- Deploy with `mvn install` -->
-                    <execution>
-                        <id>deploy-application</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                    </execution>
-
-                    <!-- Undeploy with `mvn clean` -->
-                    <execution>
-                        <id>undeploy-application</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>undeploy</goal>
-                        </goals>
-                    </execution>
-
-                    <!-- Remove datasource from Wildfly configuration -->
-                    <!-- TODO: Goal execution is not idempotent!
-                               A second invocation of `mvn clean` will fail at this stage
-                               and also not run the undeploy-jdbc-driver goal-->
-                    <execution>
-                        <id>remove-datasource</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>execute-commands</goal>
-                        </goals>
-                        <configuration>
-                            <execute-commands>
-                                <batch>true</batch>
-                                <commands>
-                                    <command>/subsystem=datasources/data-source=${db.datasource.name}:disable()</command>
-                                    <command>/subsystem=datasources/data-source=${db.datasource.name}:remove()</command>
-                                </commands>
-                            </execute-commands>
-                        </configuration>
-                    </execution>
-
-                    <!-- Undeploy MySQL driver -->
-                    <execution>
-                        <id>undeploy-jdbc-driver</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>undeploy-artifact</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>${mysql.groupId}</groupId>
-                            <artifactId>${mysql.artifactId}</artifactId>
-                            <name>${mysql.artifactId}-${mysql.driver.version}.jar</name>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
@@ -215,20 +108,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.3.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.3.1.Final</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- MySQL JDBC driver -->
-        <dependency>
-            <groupId>${mysql.groupId}</groupId>
-            <artifactId>${mysql.artifactId}</artifactId>
-            <version>${mysql.driver.version}</version>
         </dependency>
     </dependencies>
 </project>
