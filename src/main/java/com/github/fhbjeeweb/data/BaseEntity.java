@@ -69,6 +69,10 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
 
     @Override
     public int hashCode() {
+        // FIXME: This null check was introduced to avoid a NullPointerException
+        // It should not be possible anywhere in the code to have an empty name
+        // When the problem is fixed elsewhere the null check might be removed
+        if (name == null) return 0;
         return name.toLowerCase().hashCode();
     }
 
