@@ -12,26 +12,27 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * <p>
  * Transfer object for a Game with an <tt>id</tt>, a <tt>name</tt>,
- * a <tt>publisher</tt> and a list of genres this game belongs to.<p>
- * </p>
- * There is a many-to-one relationship between Game and Publisher.<p>
- * </p>
- * There is a many-to-many relationship between Game and Genre.<p>
- * </p>
+ * a <tt>publisher</tt> and a list of genres this game belongs to.</p>
+ * <p>
+ * There is a many-to-one relationship between Game and Publisher.</p>
+ * <p>
+ * There is a many-to-many relationship between Game and Genre.</p>
+ * <p>
  * The following features are provided by the super class
- * <tt>BaseEntity</tt>:<p>
- * </p>
- * Transfer objects will be persisted.<p>
- * </p>
- * The <tt>name</tt> must not be <tt>null</tt>.<p>
- * </p>
+ * <tt>BaseEntity</tt>:</p>
+ * <p>
+ * Transfer objects will be persisted.</p>
+ * <p>
+ * The <tt>name</tt> must not be <tt>null</tt>.</p>
+ * <p>
  * Two Instances of Game are considered equal if their names converted
- * to lowercase are equal.<p>
- * </p>
+ * to lowercase are equal.</p>
+ * <p>
  * Instances of Game are ordered using the natural ordering of their names
- * converted to lowercase.
- **/
+ * converted to lowercase.</p>
+ */
 @Entity
 public class Game extends BaseEntity {
 

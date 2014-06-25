@@ -7,18 +7,19 @@ import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
 /**
- * Abstract transfer object with an <tt>id</tt> and a <tt>name</tt>.<p>
- * </p>
- * Transfer objects will be persisted.<p>
- * </p>
- * The <tt>name</tt> must not be <tt>null</tt>.<p>
- * </p>
+ * <p>
+ * Abstract transfer object with an <tt>id</tt> and a <tt>name</tt>.</p>
+ * <p>
+ * Transfer objects will be persisted.</p>
+ * <p>
+ * The <tt>name</tt> must not be <tt>null</tt>.</p>
+ * <p>
  * Two Instances of BaseEntity are considered equal if their names converted
- * to lowercase are equal.<p>
- * </p>
+ * to lowercase are equal.</p>
+ * <p>
  * Instances of BaseEntity are ordered using the natural ordering of their names
- * converted to lowercase.
- **/
+ * converted to lowercase.</p>
+ */
 @MappedSuperclass
 public abstract class BaseEntity implements Comparable<BaseEntity>{
 

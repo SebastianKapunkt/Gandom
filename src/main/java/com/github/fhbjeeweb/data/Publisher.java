@@ -8,24 +8,25 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * <p>
  * Transfer object for a Game Publisher with an <tt>id</tt>,
- * a <tt>name</tt> and a list of published games.<p>
- * </p>
- * There is a one-to-many relationship between Publisher and Game.<p>
- * </p>
+ * a <tt>name</tt> and a list of published games.</p>
+ * <p>
+ * There is a one-to-many relationship between Publisher and Game.</p>
+ * <p>
  * The following features are provided by the super class
- * <tt>BaseEntity</tt>:<p>
- * </p>
- * Transfer objects will be persisted.<p>
- * </p>
- * The <tt>name</tt> must not be <tt>null</tt>.<p>
- * </p>
+ * <tt>BaseEntity</tt>:</p>
+ * <p>
+ * Transfer objects will be persisted.</p>
+ * <p>
+ * The <tt>name</tt> must not be <tt>null</tt>.</p>
+ * <p>
  * Two Instances of Publisher are considered equal if their names converted
- * to lowercase are equal.<p>
- * </p>
+ * to lowercase are equal.</p>
+ * <p>
  * Instances of Publisher are ordered using the natural ordering of their names
- * converted to lowercase.
- **/
+ * converted to lowercase.</p>
+ */
 @Entity
 public class Publisher extends BaseEntity {
 
