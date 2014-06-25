@@ -48,7 +48,7 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
 
     @Override
     public String toString() {
-        return getClass().toString() + ": " + name;
+        return getClass().getSimpleName() + ": " + name;
     }
 
     @Override
