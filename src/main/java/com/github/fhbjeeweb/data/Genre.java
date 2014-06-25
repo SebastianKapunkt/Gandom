@@ -9,8 +9,8 @@ import java.util.Set;
 
 /**
  * <p>
- * Transfer object for a Game Genre with an <tt>id</tt>,
- * a <tt>name</tt> and a list of games of this genre.</p>
+ * Transfer object for a game genre with an <tt>id</tt>,
+ * a <tt>name</tt> and a list of <tt>games</tt> of this genre.</p>
  * <p>
  * There is a many-to-many relationship between Genre and Game.</p>
  * <p>

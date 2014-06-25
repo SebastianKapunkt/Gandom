@@ -13,8 +13,8 @@ import java.util.Set;
 
 /**
  * <p>
- * Transfer object for a Game with an <tt>id</tt>, a <tt>name</tt>,
- * a <tt>publisher</tt> and a list of genres this game belongs to.</p>
+ * Transfer object for a game with an <tt>id</tt>, a <tt>name</tt>,
+ * a <tt>publisher</tt> and a list of <tt>genres</tt> this game belongs to.</p>
  * <p>
  * There is a many-to-one relationship between Game and Publisher.</p>
  * <p>

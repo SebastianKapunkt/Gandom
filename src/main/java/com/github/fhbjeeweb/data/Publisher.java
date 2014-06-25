@@ -9,8 +9,8 @@ import java.util.Set;
 
 /**
  * <p>
- * Transfer object for a Game Publisher with an <tt>id</tt>,
- * a <tt>name</tt> and a list of published games.</p>
+ * Transfer object for a game publisher with an <tt>id</tt>,
+ * a <tt>name</tt> and a list of published <tt>games</tt>.</p>
  * <p>
  * There is a one-to-many relationship between Publisher and Game.</p>
  * <p>
