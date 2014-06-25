@@ -1,53 +1,44 @@
-/**
- * Genre erbt von BaseEntity
- *
- * besitzt eine Many to Many Beziehung zu Game
- *
- * der Name dar nicht null sein
- *
- * Die Klasse soll ein Genre wiederspiegeln. Zu jedem Genre gibt es belibig
- * viele Spiele.
- *
- */
-
 package com.github.fhbjeeweb.data;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
-import javax.validation.constraints.NotNull;
 
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * <p>
+ * Transfer object for a game genre with an <tt>id</tt>,
+ * a <tt>name</tt> and a list of <tt>games</tt> of this genre.</p>
+ * <p>
+ * There is a many-to-many relationship between Genre and Game.</p>
+ * <p>
+ * The following features are provided by the super class
+ * <tt>BaseEntity</tt>:</p>
+ * <p>
+ * Transfer objects will be persisted.</p>
+ * <p>
+ * The <tt>name</tt> must not be <tt>null</tt>.</p>
+ * <p>
+ * Two Instances of Genre are considered equal if their names converted
+ * to lowercase are equal.</p>
+ * <p>
+ * Instances of Genre are ordered using the natural ordering of their names
+ * converted to lowercase.</p>
+ */
 @Entity
-public class Genre extends BaseEntity implements Comparable<Genre> {
-
-	@NotNull(message = "Bitte Name für Genre eingeben")
-    private String name;
+public class Genre extends BaseEntity {
 
     @ManyToMany(mappedBy = "genres", fetch = FetchType.EAGER)
-    private Set<Game> games = new HashSet<Game>();
-    
-    @Override
-    public String toString() {
-        return name.toString() + "(" + getId() + ")";
+    private Set<Game> games = new HashSet<>();
+
+    public Genre() {}
+
+    public Genre(String name) {
+        super(name);
     }
-    
-    @Override
-    public int compareTo(Genre other) {
-    	return String.CASE_INSENSITIVE_ORDER.compare(name,
-                other.getName());
-    }
-    
-    public String getName() {
-    	return name;
-    }
-    
-    public void setName(String name) {
-    	this.name = name;
-    }
-    
+
     public Set<Game> getGames() {
     	return games;
     }
