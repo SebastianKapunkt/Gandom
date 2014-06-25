@@ -58,9 +58,7 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
 
         BaseEntity that = (BaseEntity) o;
 
-        if (!name.toLowerCase().equals(that.name.toLowerCase())) return false;
-
-        return true;
+        return name.toLowerCase().equals(that.name.toLowerCase());
     }
 
     @Override
