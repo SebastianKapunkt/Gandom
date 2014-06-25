@@ -9,7 +9,7 @@ import javax.faces.convert.FacesConverter;
 import java.util.HashSet;
 import java.util.Set;
 
-@FacesConverter
+@FacesConverter(value = "com.github.fhbjeeweb.GenresConverter")
 public class GenresConverter implements Converter{
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
