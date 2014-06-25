@@ -15,23 +15,29 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 @Stateless
 @Named(value = "manager")
 public class GameManagerBo implements GameManager {
-    @Inject // FIXME: Daos are not yet annotated for CDI
+    @Inject // TODO: Daos are not yet annotated for CDI
     private Dao<Game> gameDao;
 
-    @Inject // FIXME: Daos are not yet annotated for CDI
+    @Inject // TODO: Daos are not yet annotated for CDI
     private Dao<Genre> genreDao;
 
-    @Inject // FIXME: Daos are not yet annotated for CDI
+    @Inject // TODO: Daos are not yet annotated for CDI
     private Dao<Publisher> publisherDao;
 
     @Override
     public void saveGame(Game game) {
+        addGameId(game);
+        addPublisherId(game);
+        addGenresIds(game);
+        mergeGenres(game);
+
         if (game.getId() == null) {
             this.gameDao.create(game);
         } else {
@@ -101,5 +107,59 @@ public class GameManagerBo implements GameManager {
 
         int randomIndex = new Random().nextInt(games.size());
         return games.get(randomIndex);
+    }
+
+    private Game addGameId(Game game){
+        List<Game> games = readGames();
+
+        for (Game persistedGame : games ) {
+            if (persistedGame.equals(game)) {
+                game.setId(persistedGame.getId());
+                return game;
+            }
+        }
+
+        // The game has not yet been persisted and the id is still null
+        // Hibernate will add an id later
+        return game;
+    }
+    private Game addPublisherId(Game game){
+        List<Publisher> publishers = readPublishers();
+
+        for (Publisher persistedPublisher : publishers) {
+            if (persistedPublisher.equals(game.getPublisher())) {
+                game.getPublisher().setId(persistedPublisher.getId());
+                return game;
+            }
+        }
+
+        // The publisher has not yet been persisted and the id is still null
+        // Hibernate will add an id later
+        return game;
+    }
+
+    private Game addGenresIds(Game game){
+        List<Genre> genres = readGenres();
+
+        for (Genre persistedGenre : genres) {
+            for (Genre genre : game.getGenres()){
+                if(persistedGenre.equals(genre)){
+                    genre.setId(persistedGenre.getId());
+                }
+            }
+        }
+
+        // The publisher has not yet been persisted and the id is still null
+        // Hibernate will add an id later
+        return game;
+    }
+
+    private Game mergeGenres(Game game) {
+        if (game.getId() != null) {
+            Game persistedGame = getGameById(game.getId());
+            game.getGenres().addAll(persistedGame.getGenres());
+        }
+
+        return game;
     }
 }

@@ -33,7 +33,6 @@ public class Publisher extends BaseEntity {
     @OneToMany(mappedBy = "publisher", fetch = FetchType.EAGER)
     private Set<Game> games = new HashSet<>();
 
-
     public Publisher() {}
 
     public Publisher(String name) {

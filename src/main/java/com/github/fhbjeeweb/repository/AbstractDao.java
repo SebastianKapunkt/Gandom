@@ -10,6 +10,7 @@ import com.github.fhbjeeweb.data.BaseEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 // TODO: Auto-generated Javadoc
 
@@ -37,7 +38,7 @@ public abstract class AbstractDao<T extends BaseEntity> implements Dao<T> {
      */
     @Override
     public void create(final T t) {
-    	this.em.persist(this.em.merge(t));
+    	this.em.merge(t);
     }
 
     /**

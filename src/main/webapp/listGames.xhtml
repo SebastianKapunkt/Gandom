@@ -27,7 +27,8 @@
             <f:facet name="header">
                 <h:outputText value="Genre"/>
             </f:facet>
-            <h:outputText value="#{game.genres}"/>
+            <h:outputText value="#{game.genres}"
+                          converter="com.github.fhbjeeweb.GenresConverter"/>
         </h:column>
     </h:dataTable>
     <h:outputText value="The game list is empty. Add your first game!"

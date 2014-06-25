@@ -49,7 +49,7 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.trim();
     }
 
     @Override
@@ -61,8 +61,9 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof BaseEntity)) return false;
-
         BaseEntity that = (BaseEntity) o;
+        // handle null
+        if (name == null || that.name == null ) return false;
 
         return name.toLowerCase().equals(that.name.toLowerCase());
     }

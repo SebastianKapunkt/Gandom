@@ -5,12 +5,16 @@ package com.github.fhbjeeweb.repository;
 
 import com.github.fhbjeeweb.data.Publisher;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
  * The Class PublisherDao.
  */
+@Named(value = "publisherDao")
+@ApplicationScoped
 public class PublisherDao extends AbstractDao<Publisher> {
 
     /**
