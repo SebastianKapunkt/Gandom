@@ -1,15 +1,3 @@
-/**
- * Genre erbt von BaseEntity
- *
- * besitzt eine Many to Many Beziehung zu Game
- *
- * der Name dar nicht null sein
- *
- * Die Klasse soll ein Genre wiederspiegeln. Zu jedem Genre gibt es belibig
- * viele Spiele.
- *
- */
-
 package com.github.fhbjeeweb.data;
 
 import javax.persistence.Entity;
@@ -19,6 +7,25 @@ import javax.persistence.ManyToMany;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Transfer object for a Game Genre with an <tt>id</tt>,
+ * a <tt>name</tt> and a list of games of this genre.<p>
+ * </p>
+ * There is a many-to-many relationship between Genre and Game.<p>
+ * </p>
+ * The following features are provided by the super class
+ * <tt>BaseEntity</tt>:<p>
+ * </p>
+ * Transfer objects will be persisted.<p>
+ * </p>
+ * The <tt>name</tt> must not be <tt>null</tt>.<p>
+ * </p>
+ * Two Instances of Genre are considered equal if their names converted
+ * to lowercase are equal.<p>
+ * </p>
+ * Instances of Genre are ordered using the natural ordering of their names
+ * converted to lowercase.
+ **/
 @Entity
 public class Genre extends BaseEntity {
 
