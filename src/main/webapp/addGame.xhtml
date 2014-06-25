@@ -12,17 +12,18 @@
     <h2><h:outputText value="Add Game"/></h2>
     <h:form id="form">
         <h:panelGrid id="grid" columns="2">
-            <h:outputLabel value="name:" for="gamename"/>
+            <h:outputLabel value="Name:" for="gameName"/>
             <h:inputText id="gameName"
                          value="#{addGameController.game.name}"
                          required="true"/>
             <h:outputLabel value="Publisher:" for="gamePublisher"/>
             <h:inputText id="gamePublisher"
-                         value="#{addGameController.publisher.name}"
+                         value="#{addGameController.game.publisher.name}"
                          required="true"/>
             <h:outputLabel value="Genres:" for="gameGenres"/>
             <h:inputText id="gameGenres"
-                         value="#{addGameController.genreString}"/>
+                         value="#{addGameController.game.genres}"
+                         converter="com.github.fhbjeeweb.GenresConverter"/>
         </h:panelGrid>
         <h:commandButton id="cancel" value="Cancel"
                          action="#{addGameController.cancel}"
