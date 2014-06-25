@@ -32,7 +32,13 @@ public class Genre extends BaseEntity {
 
     @ManyToMany(mappedBy = "genres", fetch = FetchType.EAGER)
     private Set<Game> games = new HashSet<>();
-    
+
+    public Genre() {}
+
+    public Genre(String name) {
+        super(name);
+    }
+
     public Set<Game> getGames() {
     	return games;
     }

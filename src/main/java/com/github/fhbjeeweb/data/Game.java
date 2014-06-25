@@ -46,6 +46,12 @@ public class Game extends BaseEntity {
             inverseJoinColumns = { @JoinColumn(name = "genre_id") })
     private Set<Genre> genres = new HashSet<>();
 
+    public Game() {}
+
+    public Game(String name) {
+        super(name);
+    }
+
     public Publisher getPublisher() {
         return publisher;
     }

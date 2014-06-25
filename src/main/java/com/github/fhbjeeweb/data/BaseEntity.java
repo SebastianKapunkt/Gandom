@@ -30,6 +30,12 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
     @NotNull(message = "The name must not be empty")
     private String name;
 
+    public BaseEntity() {}
+
+    public BaseEntity(String name) {
+        this.name = name;
+    }
+
 	public Long getId() {
 		return id;
 	}
