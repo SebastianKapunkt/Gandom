@@ -22,9 +22,4 @@ public class ListGameController {
     public String addGame() {
         return Pages.ADD_GAME;
     }
-
-    public String deleteAll() {
-//        manager.deleteAllGames();
-        return Pages.LIST_GAMES;
-    }
 }
