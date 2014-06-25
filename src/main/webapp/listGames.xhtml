@@ -15,13 +15,13 @@
             <f:facet name="header">
                 <h:outputText value="Name"/>
             </f:facet>
-            <h:outputText value="#{game}"/>
+            <h:outputText value="#{game.name}"/>
         </h:column>
         <h:column>
             <f:facet name="header">
                 <h:outputText value="Publisher"/>
             </f:facet>
-            <h:outputText value="#{game.publisher}"/>
+            <h:outputText value="#{game.publisher.name}"/>
         </h:column>
         <h:column>
             <f:facet name="header">
@@ -33,8 +33,6 @@
     <h:outputText value="The game list is empty. Add your first game!"
                   rendered="#{listGameController.games.isEmpty()}"/>
     <h:form>
-        <h:commandButton id="deleteAll" value="Delete All Games"
-                         action="#{listGameController.deleteAll}"/>
         <h:commandButton id="addGame" value="Add Game"
                          action="#{listGameController.addGame}"/>
     </h:form>
