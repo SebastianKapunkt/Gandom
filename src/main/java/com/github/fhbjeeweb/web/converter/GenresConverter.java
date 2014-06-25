@@ -27,6 +27,7 @@ public class GenresConverter implements Converter{
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
         StringBuilder genres = new StringBuilder();
+        // FIXME: How can we typecheck this?
         for (Genre genre : (Set<Genre>)o) {
             genres.append(genre).append(" ");
         }
