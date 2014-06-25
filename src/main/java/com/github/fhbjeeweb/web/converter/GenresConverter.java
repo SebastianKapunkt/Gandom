@@ -5,6 +5,7 @@ import com.github.fhbjeeweb.data.Genre;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,9 +27,18 @@ public class GenresConverter implements Converter{
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
+        Set<Genre> g;
+
+        try {
+            g = (Set<Genre>)o;
+        } catch (ClassCastException cce) {
+            throw new ConverterException(
+                    "Not a list of Genres. Could not convert to a String");
+        }
+
         StringBuilder genres = new StringBuilder();
-        // FIXME: How can we typecheck this?
-        for (Genre genre : (Set<Genre>)o) {
+
+        for (Genre genre : g) {
             genres.append(genre).append(" ");
         }
 
