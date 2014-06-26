@@ -68,6 +68,7 @@ insert into game_genre(game_id, genre_id) values (5, 11);
 insert into Game(id, name, publisher_id) values (6, 'Final Fantasy VII', 5);
 insert into game_genre(game_id, genre_id) values (6, 3);
 insert into game_genre(game_id, genre_id) values (6, 10);
+insert into game_genre(game_id, genre_id) values (6, 13);
 insert into game_genre(game_id, genre_id) values (6, 14);
 
 insert into Game(id, name, publisher_id) values (7, 'Bioshock Infinite', 4);
