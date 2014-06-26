@@ -36,14 +36,12 @@ public class GameManagerBo implements GameManager {
 	@Override
 	public void saveGame(Game game) {
 
+		addGameId(game);
+		addPublisherId(game);
+		addGenreIds(game);
+		
 		if (!game.getIsEdited()) {
-			addGameId(game);
-			addPublisherId(game);
-			addGenreIds(game);
 			mergeGenres(game);
-		} else {
-			addPublisherId(game);
-			addGenreIds(game);
 		}
 
 		if (game.getId() == null) {
@@ -61,7 +59,7 @@ public class GameManagerBo implements GameManager {
 			this.genreDao.update(genre);
 		}
 	}
-	
+
 	@Override
 	public void savePublisher(Publisher publisher) {
 		if (publisher.getId() == null) {
