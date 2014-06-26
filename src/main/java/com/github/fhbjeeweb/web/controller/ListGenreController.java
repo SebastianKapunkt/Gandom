@@ -19,4 +19,8 @@ public class ListGenreController {
 	public List<Genre> getGenres(){
 		return manager.readGenres();
 	}
+	
+	public String editGenre(){
+		return Pages.EDIT_GENRE;
+	}
 }

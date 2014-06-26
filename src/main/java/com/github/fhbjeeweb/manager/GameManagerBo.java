@@ -39,17 +39,35 @@ public class GameManagerBo implements GameManager {
 		if (!game.getIsEdited()) {
 			addGameId(game);
 			addPublisherId(game);
-			addGenresIds(game);
+			addGenreIds(game);
 			mergeGenres(game);
 		} else {
 			addPublisherId(game);
-			addGenresIds(game);
+			addGenreIds(game);
 		}
 
 		if (game.getId() == null) {
 			this.gameDao.create(game);
 		} else {
 			this.gameDao.update(game);
+		}
+	}
+
+	@Override
+	public void saveGenre(Genre genre) {
+		if (genre.getId() == null) {
+			this.genreDao.create(genre);
+		} else {
+			this.genreDao.update(genre);
+		}
+	}
+	
+	@Override
+	public void savePublisher(Publisher publisher) {
+		if (publisher.getId() == null) {
+			this.publisherDao.create(publisher);
+		} else {
+			this.publisherDao.update(publisher);
 		}
 	}
 
@@ -147,7 +165,7 @@ public class GameManagerBo implements GameManager {
 		return game;
 	}
 
-	private Game addGenresIds(Game game) {
+	private Game addGenreIds(Game game) {
 		List<Genre> genres = readGenres();
 
 		for (Genre persistedGenre : genres) {
@@ -158,8 +176,6 @@ public class GameManagerBo implements GameManager {
 			}
 		}
 
-		// The publisher has not yet been persisted and the id is still null
-		// Hibernate will add an id later
 		return game;
 	}
 

@@ -10,6 +10,10 @@ public interface GameManager {
 
     public void saveGame(final Game game);
 
+    public void saveGenre(final Genre genre);
+
+    public void savePublisher(final Publisher publisher);
+
     public List<Game> readGames();
 
     public List<Genre> readGenres();
@@ -22,5 +26,6 @@ public interface GameManager {
 
     public Game getGameById(final Long id);
 
-    public Game selectRandomGame();
+	public Game selectRandomGame();
+
 }

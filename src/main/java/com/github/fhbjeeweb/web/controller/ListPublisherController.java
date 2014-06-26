@@ -19,4 +19,8 @@ public class ListPublisherController {
 	public List<Publisher> getPublishers() {
 		return manager.readPublishers();
 	}
+	
+	public String editPublisher(){
+		return Pages.EDIT_PUBLISHER;
+	}
 }
