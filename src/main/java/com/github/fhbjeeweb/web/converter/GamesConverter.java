@@ -38,7 +38,7 @@ public class GamesConverter implements Converter {
 			games = (Set<Game>) o;
 		} catch (ClassCastException cce) {
 			throw new ConverterException(
-					"Not a lost of Games, Could not convert to a String");
+					"Not a list of Games, could not convert to a String");
 		}
 
 		// Convert Set to TreeSet so that games are sorted alphabetically

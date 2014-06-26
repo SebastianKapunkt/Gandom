@@ -12,42 +12,45 @@ import java.util.Set;
 import java.util.TreeSet;
 
 @FacesConverter(value = "com.github.fhbjeeweb.GenresConverter")
-public class GenresConverter implements Converter{
-    @Override
-    public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
-        Set<Genre> genres = new HashSet<>();
+public class GenresConverter implements Converter {
 
-        if (s != null && !s.isEmpty()) {
-            String[] genreNames = s.split(",");
-            for (String name : genreNames) {
-                genres.add(new Genre(name.trim()));
-            }
-        }
-        return genres;
-    }
+	@Override
+	public Object getAsObject(FacesContext facesContext,
+			UIComponent uiComponent, String s) {
+		Set<Genre> genres = new HashSet<>();
 
-    @Override
-    public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
-        Set<Genre> genres;
+		if (s != null && !s.isEmpty()) {
+			String[] genreNames = s.split(",");
+			for (String name : genreNames) {
+				genres.add(new Genre(name.trim()));
+			}
+		}
+		return genres;
+	}
 
-        try {
-            genres = (Set<Genre>)o;
-        } catch (ClassCastException cce) {
-            throw new ConverterException(
-                    "Not a list of Genres. Could not convert to a String");
-        }
+	@Override
+	public String getAsString(FacesContext facesContext,
+			UIComponent uiComponent, Object o) {
+		Set<Genre> genres;
 
-        // Convert Set to TreeSet so that genres are sorted alphabetically
-        genres = new TreeSet<>(genres);
-        StringBuilder genresStringBuilder = new StringBuilder();
+		try {
+			genres = (Set<Genre>) o;
+		} catch (ClassCastException cce) {
+			throw new ConverterException(
+					"Not a list of Genres. could not convert to a String");
+		}
 
-        for (Genre genre : genres) {
-            genresStringBuilder.append(genre.getName()).append(", ");
-        }
+		// Convert Set to TreeSet so that genres are sorted alphabetically
+		genres = new TreeSet<>(genres);
+		StringBuilder genresStringBuilder = new StringBuilder();
 
-        genresStringBuilder.reverse().replace(0, 2, "").reverse();
-        
-        // Remove trailing whitespace of last append with trim()
-        return genresStringBuilder.toString().trim();
-    }
+		for (Genre genre : genres) {
+			genresStringBuilder.append(genre.getName()).append(", ");
+		}
+
+		genresStringBuilder.reverse().replace(0, 2, "").reverse();
+
+		// Remove trailing whitespace of last append with trim()
+		return genresStringBuilder.toString().trim();
+	}
 }
