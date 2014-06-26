@@ -74,11 +74,3 @@ a {
 .middleText {
 	font-size: 15pt;
 }
-
-.messages{
-	position: fixed;
-	right: 0px;
-	top: 100px;
-	color: red;
-	font-size: 13pt;
-}
