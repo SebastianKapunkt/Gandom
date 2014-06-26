@@ -22,4 +22,8 @@ public class ListGameController {
     public String addGame() {
         return Pages.ADD_GAME;
     }
+
+    public String editGame() {
+        return Pages.EDIT_GAME;
+    }
 }
