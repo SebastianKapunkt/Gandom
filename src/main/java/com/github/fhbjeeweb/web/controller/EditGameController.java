@@ -46,7 +46,7 @@ public class EditGameController {
 
 	public String save() {
 		/* TODO FIX LOSE OF ID */
-		game.setId(manager.getGameById(persistedGameId).getId());
+		game.setId(persistedGameId);
 		game.setIsEdited(true);
 		manager.saveGame(game);
 		return Pages.LIST_GAMES;
