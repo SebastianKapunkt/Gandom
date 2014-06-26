@@ -39,7 +39,7 @@ public class GameManagerBo implements GameManager {
 		addGameId(game);
 		addPublisherId(game);
 		addGenreIds(game);
-		
+
 		if (game.getId() == null) {
 			mergeGenres(game);
 		}

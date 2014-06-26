@@ -3,11 +3,8 @@ package com.github.fhbjeeweb.web.controller;
 import java.io.Serializable;
 
 import com.github.fhbjeeweb.data.Game;
-import com.github.fhbjeeweb.data.Publisher;
 import com.github.fhbjeeweb.manager.GameManager;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,12 +20,6 @@ public class EditGameController implements Serializable {
 
 	private long persistedGameId;
 	private Game game;
-
-	// @PostConstruct
-	// private void initGame() {
-	// game = new Game();
-	// game.setPublisher(new Publisher());
-	// }
 
 	public long getPersistedGameId() {
 		return persistedGameId;
@@ -51,8 +42,7 @@ public class EditGameController implements Serializable {
 	}
 
 	public String save() {
-		// /* TODO FIX LOSE OF ID */
-		// game.setId(persistedGameId);
+		game.getPublisher().setId(null);
 		manager.saveGame(game);
 		return Pages.LIST_GAMES;
 	}

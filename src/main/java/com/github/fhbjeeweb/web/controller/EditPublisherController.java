@@ -1,7 +1,6 @@
 package com.github.fhbjeeweb.web.controller;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -9,7 +8,7 @@ import com.github.fhbjeeweb.data.Publisher;
 import com.github.fhbjeeweb.manager.GameManager;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class EditPublisherController {
 
 	@Inject
@@ -18,10 +17,6 @@ public class EditPublisherController {
 	private long persitedPublisherId;
 	private Publisher publisher;
 	
-	@PostConstruct
-	private void initPublisher(){
-		publisher = new Publisher();
-	}
 
 	public long getPersitedPublisherId() {
 		return persitedPublisherId;
@@ -44,7 +39,6 @@ public class EditPublisherController {
 	}
 	
 	public String save(){
-		publisher.setId(persitedPublisherId);
 		manager.savePublisher(publisher);
 		return Pages.LIST_PUBLISHERS;
 	}

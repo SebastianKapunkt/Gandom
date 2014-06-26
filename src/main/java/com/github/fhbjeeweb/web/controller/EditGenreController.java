@@ -1,7 +1,6 @@
 package com.github.fhbjeeweb.web.controller;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -9,7 +8,7 @@ import com.github.fhbjeeweb.data.Genre;
 import com.github.fhbjeeweb.manager.GameManager;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class EditGenreController {
 
 	@Inject
@@ -18,11 +17,6 @@ public class EditGenreController {
 	private long persitedGenreId;
 	private Genre genre;
 	
-	@PostConstruct
-	private void initGenre(){
-		genre = new Genre();
-	}
-
 	public long getPersitedGenreId() {
 		return persitedGenreId;
 	}
