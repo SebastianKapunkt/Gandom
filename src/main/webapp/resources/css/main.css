@@ -55,6 +55,11 @@ a {
 	width: 680px;
 }
 
+.thisIsTheButton{
+	height: 150px;
+	width: 300px;
+}
+
 .fullwidth {
 	width: 100%;
 	margin: 0px;
@@ -62,7 +67,7 @@ a {
 	margin-bottom: 10px;
 }
 
-.bigText {
+.largeText {
 	font-size: 20pt;
 }
 
