@@ -18,14 +18,17 @@ public class EditGameController {
     private long persistedGameId;
     private Game game;
 
-    /*
+//    @PostConstruct
+//    private void initGame() {
+//        game = new Game();
+//    }
+
     @PostConstruct
-    private void initGame() {
+    public void init() {
         game = new Game();
         game.setPublisher(new Publisher());
     }
-    */
-
+    
     public long getPersistedGameId() {
         return persistedGameId;
     }
