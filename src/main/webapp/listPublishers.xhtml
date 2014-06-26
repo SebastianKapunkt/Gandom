@@ -18,11 +18,8 @@
                     <f:facet name="header">
                         <h:outputText value="Games" />
                     </f:facet>
-                    <h:dataTable value="#{publisher.games}" var="game">
-                        <h:column>
-                            <h:outputText value="#{game.name}" />
-                        </h:column>
-                    </h:dataTable>
+                    <h:outputText value="#{publisher.games}"
+                        converter="com.github.fhbjeeweb.GamesConverter" />
                 </h:column>
             </h:dataTable>
         </div>
