@@ -1,5 +1,5 @@
 insert into Genre(id, name) values (1, 'Action');
-insert into Genre(id, name) values (2, 'Abenteuer');
+insert into Genre(id, name) values (2, 'Adventure');
 insert into Genre(id, name) values (3, 'Singelplayer');
 insert into Genre(id, name) values (4, '3rd-Person');
 insert into Genre(id, name) values (5, 'Puzzle');
@@ -11,13 +11,13 @@ insert into Genre(id, name) values (10, 'RPG');
 insert into Genre(id, name) values (11, 'Shooter');
 insert into Genre(id, name) values (12, 'Open-World');
 insert into Genre(id, name) values (13, 'Fantasy');
-insert into Genre(id, name) values (14, 'Rundenbasiert');
+insert into Genre(id, name) values (14, 'Turn-based');
 insert into Genre(id, name) values (15, 'Indie');
 insert into Genre(id, name) values (16, 'Point&Click');
 insert into Genre(id, name) values (17, 'Multiplayer');
 insert into Genre(id, name) values (18, '2D');
 insert into Genre(id, name) values (19, 'MMO');
-insert into Genre(id, name) values (20, 'Strategie');
+insert into Genre(id, name) values (20, 'Strategy');
 
 insert into Publisher(id, name) values (1, 'Capcom');
 insert into Publisher(id, name) values (2, 'Valve');
