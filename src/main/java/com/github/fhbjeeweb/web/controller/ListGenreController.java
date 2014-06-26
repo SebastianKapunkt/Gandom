@@ -1,6 +1,6 @@
 package com.github.fhbjeeweb.web.controller;
 
-import java.util.List;
+import java.util.TreeSet;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -16,11 +16,12 @@ public class ListGenreController {
 	@Inject
 	private GameManager manager;
 
-	public List<Genre> getGenres(){
-		return manager.readGenres();
+	public TreeSet<Genre> getGenres() {
+		// Convert List to TreeSet so that genres are sorted alphabetically
+		return new TreeSet<Genre>(manager.readGenres());
 	}
-	
-	public String editGenre(){
+
+	public String editGenre() {
 		return Pages.EDIT_GENRE;
 	}
 }

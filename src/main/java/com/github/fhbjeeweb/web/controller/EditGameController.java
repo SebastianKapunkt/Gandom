@@ -43,7 +43,7 @@ public class EditGameController implements Serializable {
 
 	public String save() {
 		game.getPublisher().setId(null);
-		manager.saveGame(game);
+		manager.editGame(game);
 		return Pages.LIST_GAMES;
 	}
 

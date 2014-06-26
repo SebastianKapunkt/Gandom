@@ -21,33 +21,34 @@ import java.util.Random;
 @Stateless
 @Named(value = "manager")
 public class GameManagerBo implements GameManager {
+
 	@Inject
-	// TODO: Daos are not yet annotated for CDI
 	private Dao<Game> gameDao;
 
 	@Inject
-	// TODO: Daos are not yet annotated for CDI
 	private Dao<Genre> genreDao;
 
 	@Inject
-	// TODO: Daos are not yet annotated for CDI
 	private Dao<Publisher> publisherDao;
 
 	@Override
-	public void saveGame(Game game) {
+	public void editGame(Game game) {
 
 		addGameId(game);
 		addPublisherId(game);
 		addGenreIds(game);
 
-		if (game.getId() == null) {
-			mergeGenres(game);
-		}
+		this.gameDao.update(game);
+	}
 
-		if (game.getId() == null) {
+	@Override
+	public void addGame(Game game) {
+		// Do nothing if the game already exists
+		// TODO: Should we throw an Exception instead?
+		if (!gameIsPersisted(game)) {
+			addPublisherId(game);
+			addGenreIds(game);
 			this.gameDao.create(game);
-		} else {
-			this.gameDao.update(game);
 		}
 	}
 
@@ -87,42 +88,23 @@ public class GameManagerBo implements GameManager {
 	@Override
 	public Genre getGenreById(Long id) {
 		Genre genre = this.genreDao.findById(Genre.class, id);
-
-		// FIXME: Throw an Exception instead
-		if (genre == null) {
-			genre = new Genre();
-		}
-
 		return genre;
 	}
 
 	@Override
 	public Publisher getPublisherById(Long id) {
 		Publisher publisher = this.publisherDao.findById(Publisher.class, id);
-
-		// FIXME: Throw an Exception instead
-		if (publisher == null) {
-			publisher = new Publisher();
-		}
-
 		return publisher;
 	}
 
 	@Override
 	public Game getGameById(Long id) {
 		Game game = gameDao.findById(Game.class, id);
-
-		// FIXME: Throw an Exception instead
-		if (game == null) {
-			game = new Game();
-		}
-
 		return game;
 	}
 
 	@Override
 	// TODO: Make sure this is only called when there is at least one Game
-	// TODO: Maybe pass in a game list to avoid hitting the database
 	public Game selectRandomGame() {
 		List<Game> games = readGames();
 
@@ -146,6 +128,10 @@ public class GameManagerBo implements GameManager {
 		// The game has not yet been persisted and the id is still null
 		// Hibernate will add an id later
 		return game;
+	}
+
+	private boolean gameIsPersisted(Game game) {
+		return addGameId(game).getId() != null;
 	}
 
 	private Game addPublisherId(Game game) {
@@ -172,15 +158,6 @@ public class GameManagerBo implements GameManager {
 					genre.setId(persistedGenre.getId());
 				}
 			}
-		}
-
-		return game;
-	}
-
-	private Game mergeGenres(Game game) {
-		if (game.getId() != null) {
-			Game persistedGame = getGameById(game.getId());
-			game.getGenres().addAll(persistedGame.getGenres());
 		}
 
 		return game;

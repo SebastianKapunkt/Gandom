@@ -7,6 +7,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
@@ -29,19 +30,18 @@ public class GenresConverter implements Converter {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public String getAsString(FacesContext facesContext,
 			UIComponent uiComponent, Object o) {
-		Set<Genre> genres;
+		Set<Genre> genres = new TreeSet<>();
 
 		try {
-			genres = (Set<Genre>) o;
+			genres.addAll((Set<Genre>) o);
 		} catch (ClassCastException cce) {
 			throw new ConverterException(
 					"Not a list of Genres. could not convert to a String");
 		}
 
-		// Convert Set to TreeSet so that genres are sorted alphabetically
-		genres = new TreeSet<>(genres);
 		StringBuilder genresStringBuilder = new StringBuilder();
 
 		for (Genre genre : genres) {

@@ -30,26 +30,26 @@ public class GamesConverter implements Converter {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public String getAsString(FacesContext facesContext,
 			UIComponent uiComponent, Object o) {
-		Set<Game> games;
+		Set<Game> games = new TreeSet<>();
 
 		try {
-			games = (Set<Game>) o;
+			games.addAll((Set<Game>) o);
 		} catch (ClassCastException cce) {
 			throw new ConverterException(
 					"Not a list of Games, could not convert to a String");
 		}
 
-		// Convert Set to TreeSet so that games are sorted alphabetically
-		games = new TreeSet<Game>(games);
 		StringBuilder gamesStringBuilder = new StringBuilder();
 
 		for (Game game : games) {
 			gamesStringBuilder.append(game.getName()).append(", ");
 		}
-		
+
 		gamesStringBuilder.reverse().replace(0, 2, "").reverse();
+		
 		// Remove trailing whitespace of last append with trim()
 		return gamesStringBuilder.toString().trim();
 	}

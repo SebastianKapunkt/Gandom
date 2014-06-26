@@ -10,7 +10,6 @@ import com.github.fhbjeeweb.data.BaseEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.List;
 
 // TODO: Auto-generated Javadoc
 

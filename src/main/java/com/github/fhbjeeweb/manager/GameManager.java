@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface GameManager {
 
-    public void saveGame(final Game game);
-
     public void saveGenre(final Genre genre);
 
     public void savePublisher(final Publisher publisher);
@@ -27,5 +25,9 @@ public interface GameManager {
     public Game getGameById(final Long id);
 
 	public Game selectRandomGame();
+
+	public void editGame(Game game);
+
+	public void addGame(Game game);
 
 }
