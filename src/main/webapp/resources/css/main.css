@@ -5,7 +5,8 @@ html, body {
 	width: 100%;
 	font-family: 'Montserrat';
 	font-size: 10pt;
-	background-image: url(../resources/pictures/bla.jpg);
+	background-image: url(../resources/pictures/Gundum.jpg);
+    /*image found at http://www.ntf-archive.de/Pics/Wallpapers/G1-Collage.jpg*/
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	overflow: scroll;
