@@ -45,7 +45,6 @@ public class EditPublisherController {
 	
 	public String save(){
 		publisher.setId(persitedPublisherId);
-		publisher.setIsEdited(true);
 		manager.savePublisher(publisher);
 		return Pages.LIST_PUBLISHERS;
 	}

@@ -45,7 +45,6 @@ public class EditGenreController {
 	
 	public String save(){
 		genre.setId(persitedGenreId);
-		genre.setIsEdited(true);
 		manager.saveGenre(genre);
 		return Pages.LIST_GENRES;
 	}
