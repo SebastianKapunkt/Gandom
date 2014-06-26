@@ -7,23 +7,27 @@ import javax.inject.Named;
 @RequestScoped
 public class NavigationController {
 
-	public String showRandomGame(){
+	public String showRandomGame() {
 		return Pages.RANDOMGAME;
 	}
 
-	public String showGameCollection(){
+	public String showGameCollection() {
 		return Pages.LIST_GAMES;
 	}
 
-	public String showAddGame(){
+	public String showAddGame() {
 		return Pages.ADD_GAME;
 	}
 
-	public String showPublisherList(){
+	public String showPublisherList() {
 		return Pages.LIST_PUBLISHERS;
 	}
 
-	public String showGenreList(){
+	public String showGenreList() {
 		return Pages.LIST_GENRES;
+	}
+
+	public String showRangam() {
+		return Pages.RANGAM;
 	}
 }

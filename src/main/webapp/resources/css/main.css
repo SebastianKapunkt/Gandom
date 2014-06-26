@@ -18,6 +18,7 @@ html, body {
     padding: 15px;
     min-height: 500px;
     margin-left: 10%;
+    border-radius: 3px;
 }
 
 .header {
@@ -61,5 +62,9 @@ a {
 }
 
 .bigText{
-    font-size: 30pt;
+    font-size: 20pt;
+}
+
+.middleText{
+	font-size: 15pt;
 }

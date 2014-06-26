@@ -1,0 +1,42 @@
+<ui:composition template="resources/templates/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<ui:define name="content">
+		<div class="content middleText">
+			<center>
+				<h:outputText styleClass="bigText" value="Welcome to Rangam" />
+			</center>
+
+			<p>
+				This site is a project from Early Birds. We are computer science
+				students, and wrote in our course JEE-Webtechnologien this site. <br />
+				The idea was to make a site that collect all your games to manage
+				them.
+			</p>
+			<center>
+				<IMG alt="gamecloud" src="resources/pictures/gameCloud.png"
+					width="80%" /> <br /> <br />
+				<h:form>
+					<h:commandLink styleClass="button" value="Game Collection"
+						action="#{navigationController.showGameCollection()}" />
+				</h:form>
+			</center>
+			<p>But thats not all! A lot of people , not "normal" ones, have a
+				lot a games. Not like 5 or 10, they have hundreds. So what you do
+				with that bunch of games? Right you want to play them! But what game
+				first? And this is the point we help you! We choose randomly a game
+				that you can play!</p>
+			<center>
+				<h:form>
+					<h:commandLink styleClass="button" value="Random Game"
+						action="#{navigationController.showRandomGame()}" />
+				</h:form>
+			</center>
+			<p>We wish you a lot of fun!</p>
+			<p>Greetings Early Birds</p>
+
+		</div>
+	</ui:define>
+</ui:composition>

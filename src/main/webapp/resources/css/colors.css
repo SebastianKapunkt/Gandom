@@ -33,7 +33,7 @@ html, body {
 .tab:hover, .table tr:hover, .table tr:nth-child(odd):hover, .button:hover
 	{
 	background-color: rgba(0, 0, 0, 0.4);
-}
+g}
 
 /* Tabellen zeilen border farbe */
 .table tr:nth-child(odd) {
