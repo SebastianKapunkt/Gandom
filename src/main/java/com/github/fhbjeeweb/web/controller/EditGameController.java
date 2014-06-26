@@ -12,49 +12,47 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class EditGameController {
-    @Inject
-    private GameManager manager;
+	@Inject
+	private GameManager manager;
 
-    private long persistedGameId;
-    private Game game;
+	private long persistedGameId;
+	private Game game;
 
-//    @PostConstruct
-//    private void initGame() {
-//        game = new Game();
-//    }
+	@PostConstruct
+	private void initGame() {
+		game = new Game();
+		game.setPublisher(new Publisher());
+	}
 
-    @PostConstruct
-    public void init() {
-        game = new Game();
-        game.setPublisher(new Publisher());
-    }
-    
-    public long getPersistedGameId() {
-        return persistedGameId;
-    }
+	public long getPersistedGameId() {
+		return persistedGameId;
+	}
 
-    public void setPersistedGameId(long persistedGameId) {
-        this.persistedGameId = persistedGameId;
-    }
+	public void setPersistedGameId(long persistedGameId) {
+		this.persistedGameId = persistedGameId;
+	}
 
-    public Game getGame() {
-        return game;
-    }
+	public Game getGame() {
+		return game;
+	}
 
-    public void setGame(Game game) {
-        this.game = game;
-    }
+	public void setGame(Game game) {
+		this.game = game;
+	}
 
-    public void loadGame() {
-        game = manager.getGameById(persistedGameId);
-    }
+	public void loadGame() {
+		game = manager.getGameById(persistedGameId);
+	}
 
-    public String save() {
-        manager.saveGame(game);
-        return Pages.LIST_GAMES;
-    }
+	public String save() {
+		/* TODO FIX LOSE OF ID */
+		game.setId(manager.getGameById(persistedGameId).getId());
+		game.setIsEdited(true);
+		manager.saveGame(game);
+		return Pages.LIST_GAMES;
+	}
 
-    public String cancel() {
-        return Pages.LIST_GAMES;
-    }
+	public String cancel() {
+		return Pages.LIST_GAMES;
+	}
 }

@@ -15,7 +15,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -33,10 +32,13 @@ public class GameManagerBo implements GameManager {
 
     @Override
     public void saveGame(Game game) {
-        addGameId(game);
-        addPublisherId(game);
-        addGenresIds(game);
-        mergeGenres(game);
+        
+    	if (!game.getIsEdited()) {
+        	addGameId(game);
+        	addPublisherId(game);
+        	addGenresIds(game);
+        	mergeGenres(game);
+		}
 
         if (game.getId() == null) {
             this.gameDao.create(game);
