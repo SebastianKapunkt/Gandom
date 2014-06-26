@@ -1,0 +1,14 @@
+.table {
+    width: 100%;
+}
+
+.table td{
+    width: 25%;
+    height: px;
+    padding: 5px;
+    vertical-align: top;
+}
+
+.table thead tr:nth-child(1) {
+    font-size: 20pt;
+}

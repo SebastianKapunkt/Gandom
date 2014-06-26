@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+/* SCHRIFTFARBE */
+html, body, a {
+	color: rgb(255, 255, 255);
+}
+
+/* Page Background */
+html, body {
+	background-color: rgb(150, 150, 150);
+}
+
+/* Content Hintergrund farben */
+.content, .buttenContent, .navibar {
+	background-color: rgba(51, 51, 51, 0.9);
+}
+
+/* Menu bar color und gameViewContent*/
+.menubar, .login:hover, .gameViewContent {
+	background-color: rgb(51, 51, 51);
+}
+
+/* Button und ähnliches*/
+.tab, .login, .loginButton, .button {
+	background-color: rgba(192, 41, 66, 1);
+	font-family: 'Montserrat';
+	font-size: 10pt;
+	color: white;
+	cursor: pointer;
+}
+
+/* Button und ähnliches : hover */
+.tab:hover, .table tr:hover, .table tr:nth-child(odd):hover, .button:hover
+	{
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Tabellen zeilen border farbe */
+.table tr:nth-child(odd) {
+	background-color: rgba(0, 0, 0, 0.2);
+}
