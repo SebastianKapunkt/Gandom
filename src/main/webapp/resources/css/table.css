@@ -1,14 +1,16 @@
 .table {
-    width: 100%;
+	width: 100%;
+	table-layout: fixed;
+	word-wrap: break-word;
 }
 
-.table td{
-    width: 25%;
-    height: px;
-    padding: 5px;
-    vertical-align: top;
+.table td {
+	width: 25%;
+	height: px;
+	padding: 5px;
+	vertical-align: top;
 }
 
 .table thead tr:nth-child(1) {
-    font-size: 20pt;
+	font-size: 20pt;
 }

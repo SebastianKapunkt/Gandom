@@ -11,7 +11,7 @@ html, body {
 }
 
 /* Content Hintergrund farben */
-.content, .buttenContent, .navibar {
+.content, .buttenContent, .navibar, .messages{
 	background-color: rgba(51, 51, 51, 0.9);
 }
 
