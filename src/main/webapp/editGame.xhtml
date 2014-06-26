@@ -23,7 +23,7 @@
 					<h:inputText id="gamePublisher"
 						value="#{editGameController.game.publisher.name}" required="true" />
 					<h:outputLabel value="Genres:" for="gameGenres" />
-					<h:inputText id="gameGenres"
+					<h:inputTextarea cols="30" rows="5" id="gameGenres"
 						value="#{editGameController.game.genres}"
 						converter="com.github.fhbjeeweb.GenresConverter" />
 				</h:panelGrid>

@@ -18,9 +18,9 @@ public class GenresConverter implements Converter{
         Set<Genre> genres = new HashSet<>();
 
         if (s != null && !s.isEmpty()) {
-            String[] genreNames = s.split("\\p{javaWhitespace}");
+            String[] genreNames = s.split(",");
             for (String name : genreNames) {
-                genres.add(new Genre(name));
+                genres.add(new Genre(name.trim()));
             }
         }
         return genres;
@@ -42,9 +42,11 @@ public class GenresConverter implements Converter{
         StringBuilder genresStringBuilder = new StringBuilder();
 
         for (Genre genre : genres) {
-            genresStringBuilder.append(genre.getName()).append(" ");
+            genresStringBuilder.append(genre.getName()).append(", ");
         }
 
+        genresStringBuilder.reverse().replace(0, 2, "").reverse();
+        
         // Remove trailing whitespace of last append with trim()
         return genresStringBuilder.toString().trim();
     }

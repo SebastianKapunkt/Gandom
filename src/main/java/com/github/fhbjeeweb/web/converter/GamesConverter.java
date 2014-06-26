@@ -51,6 +51,6 @@ public class GamesConverter implements Converter {
 		
 		gamesStringBuilder.reverse().replace(0, 2, "").reverse();
 		// Remove trailing whitespace of last append with trim()
-		return gamesStringBuilder.toString();
+		return gamesStringBuilder.toString().trim();
 	}
 }
