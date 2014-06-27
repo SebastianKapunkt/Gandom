@@ -7,11 +7,15 @@ import javax.inject.Named;
 import com.github.fhbjeeweb.data.Publisher;
 import com.github.fhbjeeweb.manager.GameManager;
 
+import java.io.Serializable;
+
 @Named
 @ViewScoped
-public class EditPublisherController {
+public class EditPublisherController implements Serializable{
 
-	@Inject
+    private static final long serialVersionUID = 7362744544141743585L;
+
+    @Inject
 	private GameManager manager;
 	
 	private long persitedPublisherId;
