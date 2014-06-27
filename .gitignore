@@ -1,5 +1,8 @@
 ### Everything listed in this file will not be commited to the git repository
 
+## Security sensitive files containing passwords etc.
+*-ds.xml
+
 ## Java specific
 # https://raw.githubusercontent.com/github/gitignore/master/Java.gitignore
 

@@ -1,3 +1,12 @@
+<!--
+This file can be used to setup a Wildfly datasource for development.
+To use it, adjust the setting for your database setup and remove the .example
+file extension (a file ending in *-ds.xml will automatically used by Wildfly).
+ You also have to deploy the driver jar referenced in this file to the server in
+ addition to your .war file.
+ Your *-ds.xml file will be ignored by git so that your username/password are
+  not shared publicly.
+-->
 <datasources xmlns="http://www.jboss.org/ironjacamar/schema">
     <datasource jndi-name="java:jboss/datasources/RangamDS" pool-name="RangamDS">
         <connection-url>jdbc:mysql://localhost:3306/rangam</connection-url>
