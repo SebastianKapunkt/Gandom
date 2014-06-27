@@ -34,9 +34,9 @@ public class GameManagerBo implements GameManager {
 	@Override
 	public void editGame(Game game) {
 
-		addGameId(game);
-		addPublisherId(game);
-		addGenreIds(game);
+		lookupGameId(game);
+		lookupPublisherId(game);
+		lookupGenreIds(game);
 
 		this.gameDao.update(game);
 	}
@@ -46,8 +46,8 @@ public class GameManagerBo implements GameManager {
 		// Do nothing if the game already exists
 		// TODO: Should we throw an Exception instead?
 		if (!gameIsPersisted(game)) {
-			addPublisherId(game);
-			addGenreIds(game);
+			lookupPublisherId(game);
+			lookupGenreIds(game);
 			this.gameDao.create(game);
 		}
 	}
@@ -115,7 +115,7 @@ public class GameManagerBo implements GameManager {
 		return games.get(randomIndex);
 	}
 
-	private Game addGameId(Game game) {
+	private Game lookupGameId(Game game) {
 		List<Game> games = readGames();
 
 		for (Game persistedGame : games) {
@@ -131,10 +131,10 @@ public class GameManagerBo implements GameManager {
 	}
 
 	private boolean gameIsPersisted(Game game) {
-		return addGameId(game).getId() != null;
+		return lookupGameId(game).getId() != null;
 	}
 
-	private Game addPublisherId(Game game) {
+	private Game lookupPublisherId(Game game) {
 		List<Publisher> publishers = readPublishers();
 
 		for (Publisher persistedPublisher : publishers) {
@@ -149,7 +149,7 @@ public class GameManagerBo implements GameManager {
 		return game;
 	}
 
-	private Game addGenreIds(Game game) {
+	private Game lookupGenreIds(Game game) {
 		List<Genre> genres = readGenres();
 
 		for (Genre persistedGenre : genres) {
