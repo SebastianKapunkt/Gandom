@@ -5,30 +5,35 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<ui:define name="content">
 		<div class="content">
+			<f:metadata>
+				<f:viewParam name="id" value="#{editGameController.persistedGameId}" />
+				<f:viewAction action="#{editGameController.loadGame}" />
+			</f:metadata>
+
 			<h2>
-				<h:outputText value="Add Game" />
+				<h:outputText value="Edit Game" />
 			</h2>
+
 			<h:form id="form">
 				<h:panelGrid styleClass="table" id="grid" columns="2">
 					<h:outputLabel value="Name:" for="gameName" />
-					<h:inputText id="gameName" value="#{addGameController.game.name}"
+					<h:inputText id="gameName" value="#{editGameController.game.name}"
 						required="true" />
 					<h:outputLabel value="Publisher:" for="gamePublisher" />
 					<h:inputText id="gamePublisher"
-						value="#{addGameController.game.publisher.name}" required="true" />
+						value="#{editGameController.game.publisher.name}" required="true" />
 					<h:outputLabel value="Genres:" for="gameGenres" />
-					<h:inputText id="gameGenres"
-						value="#{addGameController.game.genres}"
+					<h:inputTextarea cols="30" rows="5" id="gameGenres"
+						value="#{editGameController.game.genres}"
 						converter="com.github.fhbjeeweb.GenresConverter" />
 				</h:panelGrid>
 				<h:commandButton styleClass="button" id="cancel" value="Cancel"
-					action="#{addGameController.cancel}" immediate="true" />
+					action="#{editGameController.cancel}" immediate="true" />
 				<h:commandButton styleClass="button" id="save" value="Save"
-					action="#{addGameController.save}" />
-				<h:messages id="messages" layout="table" infoClass="info"
-					errorClass="error" />
+					action="#{editGameController.save}" />
 			</h:form>
-
+			<h:messages id="messages" layout="table" infoClass="info"
+				errorClass="error" />
 		</div>
 	</ui:define>
 </ui:composition>

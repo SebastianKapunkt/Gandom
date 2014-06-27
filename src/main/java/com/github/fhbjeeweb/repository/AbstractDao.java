@@ -37,7 +37,7 @@ public abstract class AbstractDao<T extends BaseEntity> implements Dao<T> {
      */
     @Override
     public void create(final T t) {
-    	this.em.persist(this.em.merge(t));
+    	this.em.merge(t);
     }
 
     /**

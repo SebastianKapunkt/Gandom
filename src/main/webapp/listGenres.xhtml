@@ -1,0 +1,30 @@
+<ui:composition template="resources/templates/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<ui:define name="content">
+		<div class="content">
+			<h:dataTable styleClass="table" value="#{listGenreController.genres}"
+				var="genre">
+				<f:facet name="header">List of Genre</f:facet>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:link id="edit#{genre.name}" value="#{genre.name}"
+						outcome="#{listGenreController.editGenre()}">
+						<f:param name="id" value="#{genre.id}" />
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Games" />
+					</f:facet>
+					<h:outputText value="#{genre.games}"
+						converter="com.github.fhbjeeweb.GamesConverter" />
+				</h:column>
+			</h:dataTable>
+		</div>
+	</ui:define>
+</ui:composition>
