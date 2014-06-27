@@ -14,38 +14,38 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class AddGameController {
-	@Inject
-	private GameManager manager;
+    @Inject
+    private GameManager manager;
 
-	private Game game;
+    private Game game;
 
-	@PostConstruct
-	private void initGame() {
-		game = new Game();
-		game.setPublisher(new Publisher());
-	}
+    @PostConstruct
+    private void initGame() {
+        game = new Game();
+        game.setPublisher(new Publisher());
+    }
 
-	public Game getGame() {
-		return game;
-	}
+    public Game getGame() {
+        return game;
+    }
 
-	public void setGame(Game game) {
-		this.game = game;
-	}
+    public void setGame(Game game) {
+        this.game = game;
+    }
 
-	public String save() {
-		try {
-			manager.addGame(game);
-		} catch (IllegalArgumentException iae) {
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, iae
-							.getMessage(), null));
-		}
-		return Pages.LIST_GAMES;
-	}
+    public String save() {
+        try {
+            manager.addGame(game);
+        } catch (IllegalArgumentException iae) {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, iae
+                            .getMessage(), null));
+        }
+        return Pages.LIST_GAMES;
+    }
 
-	public String cancel() {
-		return Pages.LIST_GAMES;
-	}
+    public String cancel() {
+        return Pages.LIST_GAMES;
+    }
 }
