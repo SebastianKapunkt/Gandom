@@ -1,13 +1,6 @@
 package com.github.fhbjeeweb.data;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,13 +33,14 @@ public class Game extends BaseEntity {
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "game_genre",
-            joinColumns = { @JoinColumn(name = "game_id") },
-            inverseJoinColumns = { @JoinColumn(name = "genre_id") })
+            joinColumns = {@JoinColumn(name = "game_id")},
+            inverseJoinColumns = {@JoinColumn(name = "genre_id")})
     private Set<Genre> genres = new HashSet<>();
 
-    public Game() {}
+    public Game() {
+    }
 
     public Game(String name) {
         super(name);
@@ -61,10 +55,10 @@ public class Game extends BaseEntity {
     }
 
     public Set<Genre> getGenres() {
-    	return genres;
+        return genres;
     }
-    
+
     public void setGenres(Set<Genre> genres) {
-    	this.genres = genres;
+        this.genres = genres;
     }
 }

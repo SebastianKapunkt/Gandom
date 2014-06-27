@@ -3,7 +3,6 @@ package com.github.fhbjeeweb.data;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,17 +32,18 @@ public class Genre extends BaseEntity {
     @ManyToMany(mappedBy = "genres", fetch = FetchType.EAGER)
     private Set<Game> games = new HashSet<>();
 
-    public Genre() {}
+    public Genre() {
+    }
 
     public Genre(String name) {
         super(name);
     }
 
     public Set<Game> getGames() {
-    	return games;
+        return games;
     }
-    
+
     public void setGames(Set<Game> games) {
-    	this.games = games;
+        this.games = games;
     }
 }

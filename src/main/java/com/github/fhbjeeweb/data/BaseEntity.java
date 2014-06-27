@@ -21,28 +21,29 @@ import javax.validation.constraints.NotNull;
  * converted to lowercase.</p>
  */
 @MappedSuperclass
-public abstract class BaseEntity implements Comparable<BaseEntity>{
+public abstract class BaseEntity implements Comparable<BaseEntity> {
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull(message = "The name must not be empty")
     private String name;
-    
-    public BaseEntity() {}
+
+    public BaseEntity() {
+    }
 
     public BaseEntity(String name) {
         this.name = name;
     }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -63,7 +64,7 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
         if (!(o instanceof BaseEntity)) return false;
         BaseEntity that = (BaseEntity) o;
         // handle null
-        if (name == null || that.name == null ) return false;
+        if (name == null || that.name == null) return false;
 
         return name.toLowerCase().equals(that.name.toLowerCase());
     }

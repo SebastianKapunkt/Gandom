@@ -3,7 +3,6 @@ package com.github.fhbjeeweb.data;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,17 +32,18 @@ public class Publisher extends BaseEntity {
     @OneToMany(mappedBy = "publisher", fetch = FetchType.EAGER)
     private Set<Game> games = new HashSet<>();
 
-    public Publisher() {}
+    public Publisher() {
+    }
 
     public Publisher(String name) {
         super(name);
     }
-    
+
     public Set<Game> getGames() {
-    	return games;
+        return games;
     }
-    
+
     public void setGames(Set<Game> games) {
-    	this.games = games;
+        this.games = games;
     }
 }
