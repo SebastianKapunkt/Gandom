@@ -12,7 +12,7 @@ file extension (a file ending in *-ds.xml will automatically used by Wildfly).
         <connection-url>jdbc:mysql://localhost:3306/rangam</connection-url>
         <driver>mysql-connector-java-5.1.29-bin.jar</driver>
         <security>
-            <user-name>rangam¸</user-name>
+            <user-name>rangam</user-name>
             <password>rangam</password>
         </security>
     </datasource>
