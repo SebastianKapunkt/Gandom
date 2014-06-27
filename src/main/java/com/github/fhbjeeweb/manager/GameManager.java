@@ -24,10 +24,10 @@ public interface GameManager {
 
     public Game getGameById(final Long id);
 
-	public Game selectRandomGame();
+    public Game selectRandomGame();
 
-	public void editGame(Game game);
+    public void editGame(Game game);
 
-	public void addGame(Game game);
+    public void addGame(Game game);
 
 }
