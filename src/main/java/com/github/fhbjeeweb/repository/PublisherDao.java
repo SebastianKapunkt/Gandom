@@ -1,6 +1,3 @@
-/*
- * 
- */
 package com.github.fhbjeeweb.repository;
 
 import com.github.fhbjeeweb.data.Publisher;
@@ -10,22 +7,10 @@ import javax.inject.Named;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-/**
- * The Class PublisherDao.
- */
 @Named(value = "publisherDao")
 @ApplicationScoped
 public class PublisherDao extends AbstractDao<Publisher> {
 
-    /**
-     * Gibt eine Liste von Publisher-Objekten zurück
-     * <p/>
-     * unter Verwendung einer TypedQuery wird mit hilfe des Entity Manager eine
-     * Anfrage an die Datenbank gestellt die den Inhalt der Tabelle Publisher
-     * ausliest. Diese Tabelle wird dann in die TypedQuery geladen.
-     *
-     * @return the list< publisher>
-     */
     @Override
     public List<Publisher> findAll() {
 
@@ -34,7 +19,5 @@ public class PublisherDao extends AbstractDao<Publisher> {
                 Publisher.class);
 
         return query.getResultList();
-
     }
-
 }
