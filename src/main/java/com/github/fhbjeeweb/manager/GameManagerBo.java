@@ -38,7 +38,7 @@ public class GameManagerBo implements GameManager {
     public void addGame(Game game) {
         // Do nothing if the game already exists
         // TODO: Should we throw an Exception instead?
-        if (lookupGameId(game) == null) {
+        if (lookupGameId(game).getId() == null) {
             lookupPublisherId(game);
             lookupGenreIds(game);
             gameDao.create(game);
