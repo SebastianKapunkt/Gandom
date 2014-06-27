@@ -21,35 +21,52 @@ import java.util.Random;
 @Stateless
 @Named(value = "manager")
 public class GameManagerBo implements GameManager {
+
 	@Inject
-	// TODO: Daos are not yet annotated for CDI
 	private Dao<Game> gameDao;
 
 	@Inject
-	// TODO: Daos are not yet annotated for CDI
 	private Dao<Genre> genreDao;
 
 	@Inject
-	// TODO: Daos are not yet annotated for CDI
 	private Dao<Publisher> publisherDao;
 
 	@Override
-	public void saveGame(Game game) {
+	public void editGame(Game game) {
 
-		if (!game.getIsEdited()) {
-			addGameId(game);
-			addPublisherId(game);
-			addGenresIds(game);
-			mergeGenres(game);
-		} else {
-			addPublisherId(game);
-			addGenresIds(game);
-		}
+		addGameId(game);
+		addPublisherId(game);
+		addGenreIds(game);
 
-		if (game.getId() == null) {
+		this.gameDao.update(game);
+	}
+
+	@Override
+	public void addGame(Game game) {
+		// Do nothing if the game already exists
+		// TODO: Should we throw an Exception instead?
+		if (!gameIsPersisted(game)) {
+			addPublisherId(game);
+			addGenreIds(game);
 			this.gameDao.create(game);
+		}
+	}
+
+	@Override
+	public void saveGenre(Genre genre) {
+		if (genre.getId() == null) {
+			this.genreDao.create(genre);
 		} else {
-			this.gameDao.update(game);
+			this.genreDao.update(genre);
+		}
+	}
+
+	@Override
+	public void savePublisher(Publisher publisher) {
+		if (publisher.getId() == null) {
+			this.publisherDao.create(publisher);
+		} else {
+			this.publisherDao.update(publisher);
 		}
 	}
 
@@ -71,42 +88,23 @@ public class GameManagerBo implements GameManager {
 	@Override
 	public Genre getGenreById(Long id) {
 		Genre genre = this.genreDao.findById(Genre.class, id);
-
-		// FIXME: Throw an Exception instead
-		if (genre == null) {
-			genre = new Genre();
-		}
-
 		return genre;
 	}
 
 	@Override
 	public Publisher getPublisherById(Long id) {
 		Publisher publisher = this.publisherDao.findById(Publisher.class, id);
-
-		// FIXME: Throw an Exception instead
-		if (publisher == null) {
-			publisher = new Publisher();
-		}
-
 		return publisher;
 	}
 
 	@Override
 	public Game getGameById(Long id) {
 		Game game = gameDao.findById(Game.class, id);
-
-		// FIXME: Throw an Exception instead
-		if (game == null) {
-			game = new Game();
-		}
-
 		return game;
 	}
 
 	@Override
 	// TODO: Make sure this is only called when there is at least one Game
-	// TODO: Maybe pass in a game list to avoid hitting the database
 	public Game selectRandomGame() {
 		List<Game> games = readGames();
 
@@ -132,6 +130,10 @@ public class GameManagerBo implements GameManager {
 		return game;
 	}
 
+	private boolean gameIsPersisted(Game game) {
+		return addGameId(game).getId() != null;
+	}
+
 	private Game addPublisherId(Game game) {
 		List<Publisher> publishers = readPublishers();
 
@@ -147,7 +149,7 @@ public class GameManagerBo implements GameManager {
 		return game;
 	}
 
-	private Game addGenresIds(Game game) {
+	private Game addGenreIds(Game game) {
 		List<Genre> genres = readGenres();
 
 		for (Genre persistedGenre : genres) {
@@ -156,17 +158,6 @@ public class GameManagerBo implements GameManager {
 					genre.setId(persistedGenre.getId());
 				}
 			}
-		}
-
-		// The publisher has not yet been persisted and the id is still null
-		// Hibernate will add an id later
-		return game;
-	}
-
-	private Game mergeGenres(Game game) {
-		if (game.getId() != null) {
-			Game persistedGame = getGameById(game.getId());
-			game.getGenres().addAll(persistedGame.getGenres());
 		}
 
 		return game;

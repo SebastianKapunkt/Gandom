@@ -12,17 +12,17 @@
                     <f:facet name="header">
                         <h:outputText value="Name" />
                     </f:facet>
-                    <h:outputText value="#{publisher.name}" />
+                    <h:link id="edit#{publisher.name}" value="#{publisher.name}"
+                        outcome="#{listPublisherController.editPublisher()}">
+                        <f:param name="id" value="#{publisher.id}" />
+                    </h:link>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Games" />
                     </f:facet>
-                    <h:dataTable value="#{publisher.games}" var="game">
-                        <h:column>
-                            <h:outputText value="#{game.name}" />
-                        </h:column>
-                    </h:dataTable>
+                    <h:outputText value="#{publisher.games}"
+                        converter="com.github.fhbjeeweb.GamesConverter" />
                 </h:column>
             </h:dataTable>
         </div>

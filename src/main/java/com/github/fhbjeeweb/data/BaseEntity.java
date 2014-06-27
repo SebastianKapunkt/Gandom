@@ -4,7 +4,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -31,9 +30,6 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
     @NotNull(message = "The name must not be empty")
     private String name;
     
-    @Transient
-    private boolean isEdited = false;
-
     public BaseEntity() {}
 
     public BaseEntity(String name) {
@@ -56,15 +52,6 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
         this.name = name.trim();
     }
 
-    public boolean getIsEdited() {
-    	return isEdited;
-    }
-    
-    
-    public void setIsEdited(boolean isEdited) {
-    	this.isEdited = isEdited;
-    }
-
     @Override
     public String toString() {
         return getClass().getSimpleName() + ": " + name;
@@ -83,9 +70,6 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
 
     @Override
     public int hashCode() {
-        // FIXME: This null check was introduced to avoid a NullPointerException
-        // It should not be possible anywhere in the code to have an empty name
-        // When the problem is fixed elsewhere the null check might be removed
         if (name == null) return 0;
         return name.toLowerCase().hashCode();
     }

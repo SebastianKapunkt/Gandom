@@ -1,6 +1,6 @@
 package com.github.fhbjeeweb.web.controller;
 
-import java.util.List;
+import java.util.TreeSet;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -16,7 +16,12 @@ public class ListPublisherController {
 	@Inject
 	private GameManager manager;
 
-	public List<Publisher> getPublishers() {
-		return manager.readPublishers();
+	public TreeSet<Publisher> getPublishers() {
+		// Convert List to TreeSet so that publishers are sorted alphabetically
+		return new TreeSet<Publisher>(manager.readPublishers());
+	}
+
+	public String editPublisher() {
+		return Pages.EDIT_PUBLISHER;
 	}
 }

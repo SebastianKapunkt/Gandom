@@ -1,70 +1,67 @@
 @CHARSET "UTF-8";
 
 html, body {
-    height: 100%;
-    width: 100%;
-    font-family: 'Montserrat';
-    font-size: 10pt;
-    background-image: url(../resources/pictures/bla.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    overflow: scroll;
+	height: 100%;
+	width: 100%;
+	font-family: 'Montserrat';
+	font-size: 10pt;
+	background-image: url(../resources/pictures/Gundum.jpg);
+    /*image found at http://www.ntf-archive.de/Pics/Wallpapers/G1-Collage.jpg*/
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	overflow: scroll;
 }
 
 .content {
-    position: relative;
-    top: 100px;
-    width: 700px;
-    padding: 15px;
-    min-height: 500px;
-    margin-left: 10%;
-    border-radius: 3px;
-}
-
-.header {
-    border-radius: 5px 5px 0px 0px;
-    z-index: 9;
+	position: relative;
+	top: 100px;
+	width: 700px;
+	padding: 15px;
+	min-height: 500px;
+	margin-left: 10%;
+	border-radius: 3px;
 }
 
 .floatLeft {
-    float: left;
-}
-
-.alignCenter{
-	align: center;
+	float: left;
 }
 
 .button {
-    text-align: center;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 3px;
-    z-index: 11;
-    border: 0;
-    font-size: 12pt;
+	text-align: center;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 3px;
+	z-index: 11;
+	border: 0;
+	font-size: 12pt;
 }
 
 a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .theGame {
-    font-size: 15pt;
-    padding: 30px;
-    width: 680px;
+	font-size: 15pt;
+	padding: 30px;
+	width: 680px;
+}
+
+.thisIsTheButton{
+	height: 150px;
+	width: 300px;
 }
 
 .fullwidth {
-    width: 100%;
-    margin: 0px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+	width: 100%;
+	margin: 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
-.bigText{
-    font-size: 20pt;
+.largeText {
+	font-size: 20pt;
 }
 
-.middleText{
+.middleText {
 	font-size: 15pt;
 }
