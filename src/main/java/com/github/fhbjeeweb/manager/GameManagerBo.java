@@ -38,69 +38,66 @@ public class GameManagerBo implements GameManager {
 		lookupPublisherId(game);
 		lookupGenreIds(game);
 
-		this.gameDao.update(game);
+		gameDao.update(game);
 	}
 
 	@Override
 	public void addGame(Game game) {
 		// Do nothing if the game already exists
 		// TODO: Should we throw an Exception instead?
-		if (!gameIsPersisted(game)) {
+        if (lookupGameId(game) == null) {
 			lookupPublisherId(game);
 			lookupGenreIds(game);
-			this.gameDao.create(game);
+			gameDao.create(game);
 		}
 	}
 
 	@Override
 	public void saveGenre(Genre genre) {
 		if (genre.getId() == null) {
-			this.genreDao.create(genre);
+			genreDao.create(genre);
 		} else {
-			this.genreDao.update(genre);
+			genreDao.update(genre);
 		}
 	}
 
 	@Override
 	public void savePublisher(Publisher publisher) {
 		if (publisher.getId() == null) {
-			this.publisherDao.create(publisher);
+			publisherDao.create(publisher);
 		} else {
-			this.publisherDao.update(publisher);
+			publisherDao.update(publisher);
 		}
 	}
 
 	@Override
 	public List<Game> readGames() {
-		return this.gameDao.findAll();
+		return gameDao.findAll();
 	}
 
 	@Override
 	public List<Genre> readGenres() {
-		return this.genreDao.findAll();
+		return genreDao.findAll();
 	}
 
 	@Override
 	public List<Publisher> readPublishers() {
-		return this.publisherDao.findAll();
+		return publisherDao.findAll();
 	}
 
 	@Override
 	public Genre getGenreById(Long id) {
-		Genre genre = this.genreDao.findById(Genre.class, id);
-		return genre;
+		return genreDao.findById(Genre.class, id);
 	}
 
 	@Override
 	public Publisher getPublisherById(Long id) {
-		Publisher publisher = this.publisherDao.findById(Publisher.class, id);
-		return publisher;
+		return publisherDao.findById(Publisher.class, id);
 	}
 
 	@Override
 	public Game getGameById(Long id) {
-		Game game = gameDao.findById(Game.class, id);
-		return game;
+		return gameDao.findById(Game.class, id);
 	}
 
 	@Override
@@ -130,10 +127,6 @@ public class GameManagerBo implements GameManager {
 		return game;
 	}
 
-	private boolean gameIsPersisted(Game game) {
-		return lookupGameId(game).getId() != null;
-	}
-
 	private Game lookupPublisherId(Game game) {
 		List<Publisher> publishers = readPublishers();
 
@@ -157,7 +150,10 @@ public class GameManagerBo implements GameManager {
 				if (persistedGenre.equals(genre)) {
 					genre.setId(persistedGenre.getId());
 				}
+
 			}
+            // The genre has not yet been persisted and the id is still null
+            // Hibernate will add an id later
 		}
 
 		return game;
