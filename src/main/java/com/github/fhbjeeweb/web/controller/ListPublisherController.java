@@ -21,6 +21,6 @@ public class ListPublisherController {
     }
 
     public String editPublisher() {
-        return Pages.EDIT_PUBLISHER;
+        return Pages.RENAME_PUBLISHER;
     }
 }

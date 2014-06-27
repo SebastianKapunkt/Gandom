@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Named
 @ViewScoped
-public class EditPublisherController implements Serializable {
+public class RenamePublisherController implements Serializable {
 
     private static final long serialVersionUID = 7362744544141743585L;
 

@@ -21,6 +21,6 @@ public class ListGenreController {
     }
 
     public String editGenre() {
-        return Pages.EDIT_GENRE;
+        return Pages.RENAME_GENRE;
     }
 }

@@ -7,31 +7,30 @@
         <div class="content">
             <f:metadata>
                 <f:viewParam name="id"
-                             value="#{editPublisherController.persitedPublisherId}"/>
-                <f:viewAction
-                        action="#{editPublisherController.loadPublisher()}"/>
+                             value="#{renameGenreController.persitedGenreId}"/>
+                <f:viewAction action="#{renameGenreController.loadGenre()}"/>
             </f:metadata>
 
             <h2>
-                <h:outputText value="Rename Publisher"/>
+                <h:outputText value="Rename Genre"/>
             </h2>
 
             <h:form id="form">
                 <h:panelGrid styleClass="table" id="grid" columns="2">
-                    <h:outputLabel value="Name:" for="publisherName"/>
-                    <h:inputText id="publisherName"
-                                 value="#{editPublisherController.publisher.name}"
+                    <h:outputLabel value="Name:" for="genreName"/>
+                    <h:inputText id="genreName"
+                                 value="#{renameGenreController.genre.name}"
                                  required="true"/>
-                    <h:outputLabel value="Games:" for="publisherGames"/>
-                    <h:outputLabel id="publisherGames"
-                                   value="#{editPublisherController.publisher.games}"
+                    <h:outputLabel value="Games:" for="genreGames"/>
+                    <h:outputLabel id="genreGames"
+                                   value="#{renameGenreController.genre.games}"
                                    converter="com.github.fhbjeeweb.GamesConverter"/>
                 </h:panelGrid>
                 <h:commandButton styleClass="button" id="cancel" value="Cancel"
-                                 action="#{editPublisherController.cancel}"
+                                 action="#{renameGenreController.cancel}"
                                  immediate="true"/>
                 <h:commandButton styleClass="button" id="save" value="Save"
-                                 action="#{editPublisherController.save}"/>
+                                 action="#{renameGenreController.save}"/>
             </h:form>
             <h:messages id="messages" layout="table" infoClass="info"
                         errorClass="error"/>

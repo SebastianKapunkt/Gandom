@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Named
 @ViewScoped
-public class EditGenreController implements Serializable {
+public class RenameGenreController implements Serializable {
 
     private static final long serialVersionUID = -6294715997571167927L;
 
