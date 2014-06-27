@@ -23,16 +23,4 @@ public class RandomGameController {
     public void rangam() {
         game = manager.selectRandomGame();
     }
-
-    public boolean isEmpty() {
-        if (game == null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean isNotEmpty() {
-        return !isEmpty();
-    }
 }

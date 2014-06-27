@@ -17,7 +17,7 @@
 				</h:form>
 
 				<h:panelGrid styleClass="table theGame" id="grid" columns="2"
-					rendered="#{randomGameController.isNotEmpty()}">
+					rendered="#{randomGameController.game != null}">
 					<h:outputLabel value="Name " />
 					<h:outputText value="#{randomGameController.game.name}"
 						required="true" />
