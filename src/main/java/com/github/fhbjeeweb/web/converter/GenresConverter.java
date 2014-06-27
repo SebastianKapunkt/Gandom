@@ -33,10 +33,10 @@ public class GenresConverter implements Converter {
 	@SuppressWarnings("unchecked")
 	public String getAsString(FacesContext facesContext,
 			UIComponent uiComponent, Object o) {
-		Set<Genre> genres = new TreeSet<>();
+		Set<Genre> genreSet = new TreeSet<>();
 
 		try {
-			genres.addAll((Set<Genre>) o);
+			genreSet.addAll((Set<Genre>) o);
 		} catch (ClassCastException cce) {
 			throw new ConverterException(
 					"Not a list of Genres. could not convert to a String");
@@ -44,13 +44,17 @@ public class GenresConverter implements Converter {
 
 		StringBuilder genresStringBuilder = new StringBuilder();
 
-		for (Genre genre : genres) {
+		for (Genre genre : genreSet) {
 			genresStringBuilder.append(genre.getName()).append(", ");
 		}
 
-		genresStringBuilder.reverse().replace(0, 2, "").reverse();
+        String genres = genresStringBuilder.toString();
 
-		// Remove trailing whitespace of last append with trim()
-		return genresStringBuilder.toString().trim();
+		// Remove trailing comma + whitespace of last append operation
+        if (genres.length() > 2) {
+            genres= genres.substring(0, genres.length() - 2);
+        }
+
+        return genres;
 	}
 }

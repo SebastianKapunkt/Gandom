@@ -33,10 +33,10 @@ public class GamesConverter implements Converter {
 	@SuppressWarnings("unchecked")
 	public String getAsString(FacesContext facesContext,
 			UIComponent uiComponent, Object o) {
-		Set<Game> games = new TreeSet<>();
+		Set<Game> gameSet = new TreeSet<>();
 
 		try {
-			games.addAll((Set<Game>) o);
+			gameSet.addAll((Set<Game>) o);
 		} catch (ClassCastException cce) {
 			throw new ConverterException(
 					"Not a list of Games, could not convert to a String");
@@ -44,13 +44,17 @@ public class GamesConverter implements Converter {
 
 		StringBuilder gamesStringBuilder = new StringBuilder();
 
-		for (Game game : games) {
+		for (Game game : gameSet) {
 			gamesStringBuilder.append(game.getName()).append(", ");
 		}
 
-		gamesStringBuilder.reverse().replace(0, 2, "").reverse();
-		
-		// Remove trailing whitespace of last append with trim()
-		return gamesStringBuilder.toString().trim();
+        String games = gamesStringBuilder.toString();
+
+        // Remove trailing comma + whitespace of last append operation
+        if (games.length() > 2) {
+            games= games.substring(0, games.length() - 2);
+        }
+
+        return games;
 	}
 }
