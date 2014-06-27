@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-	<title>Rangam</title>
-	<link href='http://fonts.googleapis.com/css?family=Montserrat'
-		rel='stylesheet' type='text/css' />
-	<!-- CSS INCLUDE -->
-	<h:outputStylesheet library="css" name="colors.css" />
-	<h:outputStylesheet library="css" name="main.css" />
-	<h:outputStylesheet library="css" name="table.css" />
-	<h:outputStylesheet library="css" name="menu.css" />
+    <title>Rangam</title>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat'
+          rel='stylesheet' type='text/css'/>
+    <!-- CSS INCLUDE -->
+    <h:outputStylesheet library="css" name="colors.css"/>
+    <h:outputStylesheet library="css" name="main.css"/>
+    <h:outputStylesheet library="css" name="table.css"/>
+    <h:outputStylesheet library="css" name="menu.css"/>
 
 </h:head>
 
 <h:body>
 
-	<div id="page">
+    <div id="page">
 
-		<div id="header">
-			<ui:insert name="header">
-				<ui:include src="/menubar.xhtml" />
-			</ui:insert>
-		</div>
+        <div id="header">
+            <ui:insert name="header">
+                <ui:include src="/menubar.xhtml"/>
+            </ui:insert>
+        </div>
 
-		<div id="content">
-			<ui:insert name="content" />
-		</div>
+        <div id="content">
+            <ui:insert name="content"/>
+        </div>
 
-	</div>
+    </div>
 </h:body>
 </html>
