@@ -6,14 +6,13 @@ import com.github.fhbjeeweb.manager.GameManager;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
 @RequestScoped
 public class AddGameController {
+
     @Inject
     private GameManager manager;
 
@@ -34,14 +33,7 @@ public class AddGameController {
     }
 
     public String save() {
-        try {
-            manager.addGame(game);
-        } catch (IllegalArgumentException iae) {
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_INFO, iae
-                            .getMessage(), null));
-        }
+        manager.addGame(game);
         return Pages.LIST_GAMES;
     }
 
