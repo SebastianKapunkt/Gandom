@@ -38,10 +38,13 @@ public class EditGameController implements Serializable {
 
     public void loadGame() {
         game = manager.getGameById(persistedGameId);
+        // If the user changes the publisher name, we do NOT want to rename the
+        // publisher across all games but only change the publisher for this
+        // single game. Thus we have to remove the old id
+        game.getPublisher().setId(null);
     }
 
     public String save() {
-        game.getPublisher().setId(null);
         manager.editGame(game);
         return Pages.LIST_GAMES;
     }
