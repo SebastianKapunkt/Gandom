@@ -20,7 +20,7 @@ public class myTester {
 		// System.out.println(json.getJSONObject(json.names().get(1).toString()).getJSONObject("data").get("steam_appid"));
 		// System.out.println(json.getJSONObject(json.names().get(0).toString()).names());
 		
-		String steamId = "76561198034249290,76561198034249290,76561198034249290,76561198034249290";
+		String steamId = "76561198034249290";
 
 		User test = new User();
 		test.generate(steamId);
