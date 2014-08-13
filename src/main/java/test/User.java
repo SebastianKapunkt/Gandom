@@ -12,27 +12,99 @@ import com.fasterxml.jackson.databind.node.TreeTraversingParser;
 
 public class User {
 
-	private static String url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?";
+	private static String Summaries = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?";
+	private static String OwnedGames = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?";
+	private static String Friendlist = "http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?";
 	private Player player;
+	private Games games;
+	private Friends friends;
 
-	// private Set<Game> games;
 	// private Set<friend> friends;
 
-	public void generate(String steamIds) {
+	public void generate(String steamId) {
 		// get API key
 		SteamApiKey key = new SteamApiKey();
 
-		playerSummaries(key.getSteamApiKey(), steamIds);
-		userGames(key.getSteamApiKey(), steamIds);
+		playerSummaries(key.getSteamApiKey(), steamId);
+		userGames(key.getSteamApiKey(), steamId);
+		userFriends(key.getSteamApiKey(), steamId);
 	}
 
-	private void userGames(String steamApiKey, String steamIds) {
+	private void userFriends(String key, String steamId) {
+		String url = User.Friendlist + "key=" + key + "&steamid=" + steamId
+				+ "&relationship=friend";
 
+		// prepare Object for request Object
+		JSONObject storeObject = new JSONObject();
+		JsonConverter converter = new JsonConverter();
+
+		// Sending Request
+		try {
+			storeObject = JsonReader.readJsonFromUrl(url);
+		} catch (JSONException | IOException e) {
+			e.printStackTrace();
+		}
+
+		storeObject = storeObject.getJSONObject("friendslist");
+
+		// Converting JsonObject to Pojo
+		JsonNode jsonNode = converter.convertJsonFormat(storeObject);
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			friends = mapper.readValue(new TreeTraversingParser(jsonNode),
+					Friends.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// test output
+		Set<Friend> friendslist = friends.getFriends();
+
+		for (Friend friend : friendslist) {
+			System.out.println("\n" + friend.getSteamid() + "\n"
+					+ friend.getFriend_since());
+		}
 	}
 
-	private void playerSummaries(String key, String steamIds) {
+	private void userGames(String key, String steamId) {
 		// build request URL
-		String url = User.url + "key=" + key + "&steamids=" + steamIds;
+		String url = User.OwnedGames + "key=" + key + "&steamid=" + steamId;
+
+		// prepare Object for request Object
+		JSONObject storeObject = new JSONObject();
+		JsonConverter converter = new JsonConverter();
+
+		// Sending Request
+		try {
+			storeObject = JsonReader.readJsonFromUrl(url);
+		} catch (JSONException | IOException e) {
+			e.printStackTrace();
+		}
+
+		storeObject = storeObject.getJSONObject("response");
+
+		// Converting JsonObject to Pojo
+		JsonNode jsonNode = converter.convertJsonFormat(storeObject);
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			games = mapper.readValue(new TreeTraversingParser(jsonNode),
+					Games.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// test output
+		Set<Game> gamelist = games.getGames();
+
+		for (Game game : gamelist) {
+			System.out.println("\n" + game.getAppid() + "\n"
+					+ game.getPlaytime_forever());
+		}
+	}
+
+	private void playerSummaries(String key, String steamId) {
+		// build request URL
+		String url = User.Summaries + "key=" + key + "&steamids=" + steamId;
 
 		// prepare Object for request Object
 		JSONObject storeObject = new JSONObject();
@@ -60,6 +132,6 @@ public class User {
 		}
 
 		// test output
-		System.out.println(player.getAvatarfull());
+		System.out.println(player.toString());
 	}
 }
