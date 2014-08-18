@@ -1,8 +1,8 @@
-package com.github.gandom.steam.data;
+package com.github.gandom.data;
 
 import java.util.List;
 
-public class ResponseGame {
+public class OwnedGames {
 	private Number game_count;
 	private List<?> games;
 

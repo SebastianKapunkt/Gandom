@@ -1,6 +1,6 @@
-package com.github.gandom.steam.data;
+package com.github.gandom.data;
 
-public class Friends {
+public class Friend {
 	private Number friend_since;
 	private String relationship;
 	private String steamid;

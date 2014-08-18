@@ -1,8 +1,8 @@
-package com.github.gandom.steam.data;
+package com.github.gandom.data;
 
 import java.util.List;
 
-public class Friendslist {
+public class Friendlist {
 	private List<?> friends;
 
 	public List<?> getFriends() {

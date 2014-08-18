@@ -1,6 +1,6 @@
-package com.github.gandom.steam.data;
+package com.github.gandom.data;
 
-public class Games {
+public class Game {
 	private Number appid;
 	private Number playtime_forever;
 

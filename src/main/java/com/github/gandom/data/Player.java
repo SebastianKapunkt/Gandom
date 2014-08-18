@@ -1,6 +1,6 @@
-package com.github.gandom.steam.data;
+package com.github.gandom.data;
 
-public class Players {
+public class Player {
 	private String avatar;
 	private String avatarfull;
 	private String avatarmedium;

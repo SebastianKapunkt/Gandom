@@ -11,10 +11,10 @@ public class SteamApiKey {
 		return steamApiKey;
 	}
 	
+	@SuppressWarnings("resource")
 	public SteamApiKey(){
-		BufferedReader reader = null;
 		try {
-			reader = new BufferedReader(new FileReader("/Users/TheDeveloper/Development/mySteamAPIKey.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("/Users/TheDeveloper/Development/mySteamAPIKey.txt"));
 			steamApiKey = reader.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();

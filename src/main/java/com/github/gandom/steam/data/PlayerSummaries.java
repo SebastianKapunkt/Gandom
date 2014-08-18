@@ -1,13 +1,15 @@
+
 package com.github.gandom.steam.data;
 
-public class PlayerSummaries {
-	private ResponsePlayer response;
+import java.util.List;
 
-	public ResponsePlayer getResponse() {
-		return this.response;
+public class PlayerSummaries{
+   	private List<?> players;
+
+ 	public List<?> getPlayers(){
+		return this.players;
 	}
-
-	public void setResponse(ResponsePlayer response) {
-		this.response = response;
+	public void setPlayers(List<?> players){
+		this.players = players;
 	}
 }
