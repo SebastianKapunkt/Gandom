@@ -1,7 +1,7 @@
 package test;
 
 import com.github.gandom.manager.GenerateUser;
-import com.github.gandom.data.User;;
+import com.github.gandom.data.User;
 
 public class myTester {
 	public static void main(String[] args){
