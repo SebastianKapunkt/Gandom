@@ -5,14 +5,18 @@ import com.github.gandom.data.User;
 
 public class myTester {
 	public static void main(String[] args){
+		
 		long start = System.nanoTime();
 		
-		String steamId = "76561197987370777";
-
+//		3k games
+//		String steamId = "76561197987370777"; 
+//		meine ID
+		String steamId = "76561198034249290";
+		
 		GenerateUser gen = new GenerateUser();
 		
 		User user = gen.User(steamId);
-		System.out.println(user.getPlayer().getProfileurl());
+		System.out.println(user.toString());
 		
 		long end = System.nanoTime();
 		
