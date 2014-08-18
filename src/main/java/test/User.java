@@ -9,6 +9,9 @@ import org.json.JSONObject;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.TreeTraversingParser;
+import com.github.gandom.data.SteamApiKey;
+import com.github.gandom.json.JsonConverter;
+import com.github.gandom.json.JsonReader;
 
 public class User {
 
@@ -58,12 +61,13 @@ public class User {
 		}
 
 		// test output
-		Set<Friend> friendslist = friends.getFriends();
-
-		for (Friend friend : friendslist) {
-			System.out.println("\n" + friend.getSteamid() + "\n"
-					+ friend.getFriend_since());
-		}
+		System.out.println(url);
+//		Set<Friend> friendslist = friends.getFriends();
+//
+//		for (Friend friend : friendslist) {
+//			System.out.println("\n" + friend.getSteamid() + "\n"
+//					+ friend.getFriend_since());
+//		}
 	}
 
 	private void userGames(String key, String steamId) {
@@ -96,10 +100,11 @@ public class User {
 		// test output
 		Set<Game> gamelist = games.getGames();
 
-		for (Game game : gamelist) {
-			System.out.println("\n" + game.getAppid() + "\n"
-					+ game.getPlaytime_forever());
-		}
+		System.out.println(url);
+//		for (Game game : gamelist) {
+//			System.out.println("\n" + game.getAppid() + "\n"
+//					+ game.getPlaytime_forever());
+//		}
 	}
 
 	private void playerSummaries(String key, String steamId) {
@@ -132,6 +137,7 @@ public class User {
 		}
 
 		// test output
-		System.out.println(player.toString());
+		System.out.println(url);
+//		System.out.println(player.toString());
 	}
 }

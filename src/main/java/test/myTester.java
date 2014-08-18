@@ -24,5 +24,6 @@ public class myTester {
 
 		User test = new User();
 		test.generate(steamId);
+		
 	}
 }

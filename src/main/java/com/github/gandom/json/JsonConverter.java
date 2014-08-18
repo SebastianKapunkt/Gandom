@@ -1,4 +1,4 @@
-package test;
+package com.github.gandom.json;
 
 import java.util.Iterator;
 
@@ -83,5 +83,5 @@ public class JsonConverter {
 		}
 		return ret;
 	}
-	
+
 }

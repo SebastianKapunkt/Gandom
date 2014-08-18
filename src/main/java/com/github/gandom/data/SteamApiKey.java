@@ -1,4 +1,4 @@
-package test;
+package com.github.gandom.data;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,7 +11,7 @@ public class SteamApiKey {
 		return steamApiKey;
 	}
 	
-	SteamApiKey(){
+	public SteamApiKey(){
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader("/Users/TheDeveloper/Development/mySteamAPIKey.txt"));
