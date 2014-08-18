@@ -9,9 +9,9 @@ import org.json.JSONObject;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.TreeTraversingParser;
-import com.github.gandom.data.SteamApiKey;
 import com.github.gandom.json.JsonConverter;
 import com.github.gandom.json.JsonReader;
+import com.github.gandom.steam.data.SteamApiKey;
 
 public class User {
 

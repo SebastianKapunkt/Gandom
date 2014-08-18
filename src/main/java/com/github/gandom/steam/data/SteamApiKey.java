@@ -1,4 +1,4 @@
-package com.github.gandom.data;
+package com.github.gandom.steam.data;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
