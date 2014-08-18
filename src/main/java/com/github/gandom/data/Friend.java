@@ -1,10 +1,19 @@
 package com.github.gandom.data;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class Friend {
 	private Number friend_since;
 	private String relationship;
 	private String steamid;
 
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this,
+				ToStringStyle.MULTI_LINE_STYLE);
+	}
+	
 	public Number getFriend_since() {
 		return this.friend_since;
 	}
