@@ -1,29 +1,22 @@
 package test;
 
-import java.io.IOException;
-
-import org.json.JSONException;
+import com.github.gandom.manager.GenerateUser;
+import com.github.gandom.data.User;;
 
 public class myTester {
-	public static void main(String[] args) throws IOException, JSONException {
-		// JSONObject json =
-		// readJsonFromUrl("http://store.steampowered.com/api/appdetails?appids=923,440,400&cc=en");
-		// JSONObject json =
-		// readJsonFromUrl("http://api.steampowered.com/ISteamApps/GetAppList/v0001/");
-		// System.out.println(json.toString());
-		// JSONArray jarray =
-		// json.getJSONObject("applist").getJSONObject("apps").getJSONArray("app");
-		// System.out.println(json.getJSONObject("applist").getJSONObject("apps").getJSONArray("app"));
-		// HashMap<Integer, String> games = new HashMap();
-		// System.out.println(jarray.getJSONObject(20));
-		// System.out.println(json.getJSONObject(json.names().get(0).toString()).getJSONObject("data").get("steam_appid"));
-		// System.out.println(json.getJSONObject(json.names().get(1).toString()).getJSONObject("data").get("steam_appid"));
-		// System.out.println(json.getJSONObject(json.names().get(0).toString()).names());
+	public static void main(String[] args){
+		long start = System.nanoTime();
 		
-		String steamId = "76561198034249290";
+		String steamId = "76561197987370777";
 
-		User test = new User();
-		test.generate(steamId);
+		GenerateUser gen = new GenerateUser();
 		
+		User user = gen.User(steamId);
+		System.out.println(user.getPlayer().getProfileurl());
+		
+		long end = System.nanoTime();
+		
+		long elapsedTime = end - start;
+		System.out.println((double)elapsedTime / 1000000000.0);
 	}
 }
