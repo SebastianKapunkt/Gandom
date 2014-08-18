@@ -1,15 +1,17 @@
-
 package com.github.gandom.steam.data;
 
-import java.util.List;
+import java.util.Set;
 
-public class PlayerSummaries{
-   	private List<?> players;
+import com.github.gandom.data.Player;
 
- 	public List<?> getPlayers(){
+public class PlayerSummaries {
+	private Set<Player> players;
+
+	public Set<Player> getPlayers() {
 		return this.players;
 	}
-	public void setPlayers(List<?> players){
+
+	public void setPlayers(Set<Player> players) {
 		this.players = players;
 	}
 }

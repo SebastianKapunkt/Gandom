@@ -1,10 +1,12 @@
-package com.github.gandom.data;
+package com.github.gandom.steam.data;
 
-import java.util.List;
+import java.util.Set;
+
+import com.github.gandom.data.Game;
 
 public class OwnedGames {
 	private Number game_count;
-	private List<?> games;
+	private Set<Game> games;
 
 	public Number getGame_count() {
 		return this.game_count;
@@ -14,11 +16,11 @@ public class OwnedGames {
 		this.game_count = game_count;
 	}
 
-	public List<?> getGames() {
+	public Set<Game> getGames() {
 		return this.games;
 	}
 
-	public void setGames(List<?> games) {
+	public void setGames(Set<Game> games) {
 		this.games = games;
 	}
 }
