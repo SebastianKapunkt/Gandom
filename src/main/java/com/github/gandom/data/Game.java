@@ -14,6 +14,42 @@ public class Game {
 				ToStringStyle.MULTI_LINE_STYLE);
 	}
 	
+//	public Game(Number appid, Number playtime_forever, Number playtime_2weeks){
+//		this.appid = appid;
+//		this.playtime_2weeks = playtime_2weeks;
+//		this.playtime_forever = playtime_forever;
+//	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((appid == null) ? 0 : appid.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Game)) {
+			return false;
+		}
+		Game other = (Game) obj;
+		if (appid == null) {
+			if (other.appid != null) {
+				return false;
+			}
+		} else if (!appid.equals(other.appid)) {
+			return false;
+		}
+		return true;
+	}
+	
 	public Number getAppid() {
 		return this.appid;
 	}
