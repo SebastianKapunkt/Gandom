@@ -11,55 +11,27 @@ import com.github.gandom.data.User;
 public class myTester {
 	public static void main(String[] args) {
 
-		// 3k games
-		// String steamId = "76561197987370777";
+		// 3k games: 76561197987370777;
 		// meine: 76561198034249290
 		// alex: 76561197985815246
 		// Sisores: 76561197983850468
-		GenerateUser gen = new GenerateUser();
 
 		String steamId = "76561197983850468";
-		User userOne = gen.User(steamId);
+		User userOne = GenerateUser.User(steamId);
 
 		System.out.println(userOne.getGames().size());
 
 		steamId = "76561198034249290";
-		User userTwo = gen.User(steamId);
+		User userTwo = GenerateUser.User(steamId);
 
 		System.out.println(userTwo.getGames().size());
-		// System.out.println(user.toString());
-		//
-		// Set<Game> one = new HashSet<Game>();
-		// Set<Game> two = new HashSet<Game>();
-		//
-		// one.add(new Game(1,0,0));
-		// one.add(new Game(2,0,0));
-		// one.add(new Game(3,0,0));
-		// one.add(new Game(4,0,0));
-		// one.add(new Game(5,0,0));
-		//
-		// two.add(new Game(1,0,0));
-		// two.add(new Game(3,0,0));
-		// two.add(new Game(5,0,0));
-		// two.add(new Game(6,0,0));
-		// two.add(new Game(7,0,0));
-		//
-		//
-		// User userOne = new User();
-		// userOne.setGames(one);
-		// User userTwo = new User();
-		// userTwo.setGames(two);
-
-		UserOperations userOperations = new UserOperations();
 
 		Set<Game> same = new HashSet<Game>();
 		Set<Game> diff = new HashSet<Game>();
 		long start = System.nanoTime();
 
-//		for (int i = 0; i < 100; i++) {
-			same.addAll(userOperations.equalCompareGameList(userOne, userTwo));
-			diff.addAll(userOperations.unequalComparedGameList(userOne, userTwo));
-//		}
+		same.addAll(UserOperations.equalCompareGameList(userOne, userTwo));
+		diff.addAll(UserOperations.unequalComparedGameList(userOne, userTwo));
 
 		long end = System.nanoTime();
 
@@ -67,8 +39,9 @@ public class myTester {
 		for (Game game : same) {
 			System.out.print(game.getAppid().toString() + "\t");
 		}
-		
-		System.out.println("\nDiff: " + diff.size() + " " + (userTwo.getGames().size()-same.size()));
+
+		System.out.println("\nDiff: " + diff.size() + " "
+				+ (userTwo.getGames().size() - same.size()));
 		for (Game game : diff) {
 			System.out.print(game.getAppid().toString() + "\t");
 		}
