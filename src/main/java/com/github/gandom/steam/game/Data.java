@@ -3,10 +3,14 @@ package com.github.gandom.steam.game;
 
 import java.util.List;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class Data{
    	private String about_the_game;
    	private Achievements achievements;
    	private List<?> categories;
+   	private String controller_support;
    	private List<?> demos;
    	private String detailed_description;
    	private List<?> developers;
@@ -15,7 +19,7 @@ public class Data{
    	private List<?> genres;
    	private String header_image;
    	private List<?> linux_requirements;
-   	private List<?> mac_requirements;
+	private Mac_requirements mac_requirements;
    	private Metacritic metacritic;
    	private List<?> movies;
    	private String name;
@@ -36,6 +40,12 @@ public class Data{
    	private String type;
    	private String website;
 
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this,
+				ToStringStyle.MULTI_LINE_STYLE);
+	}
+   	
  	public String getAbout_the_game(){
 		return this.about_the_game;
 	}
@@ -102,10 +112,10 @@ public class Data{
 	public void setLinux_requirements(List<?> linux_requirements){
 		this.linux_requirements = linux_requirements;
 	}
- 	public List<?> getMac_requirements(){
+ 	public Mac_requirements getMac_requirements(){
 		return this.mac_requirements;
 	}
-	public void setMac_requirements(List<?> mac_requirements){
+	public void setMac_requirements(Mac_requirements mac_requirements){
 		this.mac_requirements = mac_requirements;
 	}
  	public Metacritic getMetacritic(){
@@ -221,5 +231,13 @@ public class Data{
 	}
 	public void setWebsite(String website){
 		this.website = website;
+	}
+
+	public String getController_support() {
+		return controller_support;
+	}
+
+	public void setController_support(String controller_support) {
+		this.controller_support = controller_support;
 	}
 }
