@@ -24,17 +24,13 @@ import com.github.gandom.steam.data.SteamApiKey;
 
 public class GenerateUser {
 
-	private static StringBuilder Summaries = new StringBuilder(
-			"http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=");
-	private static StringBuilder OwnedGames = new StringBuilder(
-			"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=");
-	private static StringBuilder Friendlist = new StringBuilder(
-			"http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=");
+	private static String Summaries = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=";
+	private static String OwnedGames = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=";
+	private static String Friendlist = "http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=";
 	private static SteamApiKey apiKey = new SteamApiKey();
 
-	private User user = new User();
-
 	public User User(String steamid) {
+		User user = new User();
 		user.setSteamId(steamid);
 		try {
 			user.setFriendlist(provideFriendlist(steamid));
@@ -50,7 +46,7 @@ public class GenerateUser {
 	private Player providePlayer(String steamid) throws JsonParseException,
 			JsonMappingException, JSONException, IOException {
 
-		Summaries.append(apiKey.getSteamApiKey()).append("&steamids=")
+		StringBuilder Summaries = new StringBuilder().append(GenerateUser.Summaries).append(apiKey.getSteamApiKey()).append("&steamids=")
 				.append(steamid);
 
 		System.out.println(Summaries);
@@ -59,7 +55,7 @@ public class GenerateUser {
 		ObjectMapper mapper = new ObjectMapper();
 
 		response = mapper.readValue(
-				new TreeTraversingParser(unnamed(Summaries.toString())),
+				new TreeTraversingParser(requestConverter(Summaries.toString())),
 				ResponseFromPlayer.class);
 		return response.getResponse().getPlayers().iterator().next();
 	}
@@ -68,7 +64,7 @@ public class GenerateUser {
 			throws JsonParseException, JsonMappingException, JSONException,
 			IOException {
 
-		OwnedGames.append(apiKey.getSteamApiKey()).append("&steamid=")
+		StringBuilder OwnedGames = new StringBuilder().append(GenerateUser.OwnedGames).append(apiKey.getSteamApiKey()).append("&steamid=")
 				.append(steamid);
 
 		System.out.println(OwnedGames);
@@ -77,7 +73,7 @@ public class GenerateUser {
 		ObjectMapper mapper = new ObjectMapper();
 
 		response = mapper.readValue(
-				new TreeTraversingParser(unnamed(OwnedGames.toString())),
+				new TreeTraversingParser(requestConverter(OwnedGames.toString())),
 				ResponseFromGame.class);
 		return response.getResponse().getGames();
 	}
@@ -85,7 +81,7 @@ public class GenerateUser {
 	private Set<Friend> provideFriendlist(String steamid)
 			throws JsonParseException, JsonMappingException, IOException {
 
-		Friendlist.append(apiKey.getSteamApiKey()).append("&steamid=")
+		StringBuilder Friendlist = new StringBuilder().append(GenerateUser.Friendlist).append(apiKey.getSteamApiKey()).append("&steamid=")
 				.append(steamid);
 
 		System.out.println(Friendlist);
@@ -94,12 +90,12 @@ public class GenerateUser {
 		ObjectMapper mapper = new ObjectMapper();
 
 		response = mapper.readValue(
-				new TreeTraversingParser(unnamed(Friendlist.toString())),
+				new TreeTraversingParser(requestConverter(Friendlist.toString())),
 				ResponseFromFriendlist.class);
 		return response.getFriendslist().getFriends();
 	}
 
-	private JsonNode unnamed(String url) throws JSONException, IOException {
+	private JsonNode requestConverter(String url) throws JSONException, IOException {
 		JSONObject storeObject = new JSONObject();
 		JsonConverter converter = new JsonConverter();
 		storeObject = JsonReader.readJsonFromUrl(url);
