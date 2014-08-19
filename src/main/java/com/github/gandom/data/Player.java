@@ -22,6 +22,9 @@ public class Player {
    	private String gameserverip;
    	private String gameserversteamid;
    	private String loccountrycode;
+   	private String locstatecode;
+   	private String realname;
+   	private String loccityid;
 
 	@Override
 	public String toString() {
@@ -171,5 +174,29 @@ public class Player {
 
 	public void setLoccountrycode(String loccountrycode) {
 		this.loccountrycode = loccountrycode;
+	}
+
+	public String getLocstatecode() {
+		return locstatecode;
+	}
+
+	public void setLocstatecode(String locstatecode) {
+		this.locstatecode = locstatecode;
+	}
+
+	public String getRealname() {
+		return realname;
+	}
+
+	public void setRealname(String realname) {
+		this.realname = realname;
+	}
+
+	public String getLoccityid() {
+		return loccityid;
+	}
+
+	public void setLoccityid(String loccityid) {
+		this.loccityid = loccityid;
 	}
 }
