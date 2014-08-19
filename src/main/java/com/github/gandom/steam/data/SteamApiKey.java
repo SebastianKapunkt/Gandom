@@ -5,19 +5,18 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class SteamApiKey {
-	private String steamApiKey;
-	
-	public String getSteamApiKey() {
-		return steamApiKey;
-	}
-	
+	private static String steamApiKey;
+
 	@SuppressWarnings("resource")
-	public SteamApiKey(){
+	public static String getSteamApiKey() {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader("/Users/TheDeveloper/Development/mySteamAPIKey.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader(
+					"/Users/TheDeveloper/Development/mySteamAPIKey.txt"));
 			steamApiKey = reader.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();
+
 		}
+		return steamApiKey;
 	}
 }
