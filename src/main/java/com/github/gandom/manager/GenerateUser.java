@@ -93,8 +93,7 @@ public class GenerateUser {
 
 	private static JsonNode requestConverter(String url) throws JSONException, IOException {
 		JSONObject storeObject = new JSONObject();
-		JsonConverter converter = new JsonConverter();
 		storeObject = JsonReader.readJsonFromUrl(url);
-		return converter.convertJsonFormat(storeObject);
+		return JsonConverter.convertJsonFormat(storeObject);
 	}
 }
