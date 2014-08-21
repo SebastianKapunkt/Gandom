@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public class JsonConverter {
 
 	@SuppressWarnings({ "deprecation" })
-	public JsonNode convertJsonFormat(JSONObject json) {
+	public static JsonNode convertJsonFormat(JSONObject json) {
 		ObjectNode ret = JsonNodeFactory.instance.objectNode();
 
 		@SuppressWarnings("unchecked")
@@ -51,7 +51,7 @@ public class JsonConverter {
 		return ret;
 	}
 
-	public JsonNode convertJsonFormat(JSONArray json) {
+	public static JsonNode convertJsonFormat(JSONArray json) {
 		ArrayNode ret = JsonNodeFactory.instance.arrayNode();
 		for (int i = 0; i < json.length(); i++) {
 			Object value;
