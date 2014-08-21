@@ -3,6 +3,9 @@ package com.github.gandom.data;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Player {
 	private String steamid;
 	private String personaname;
@@ -17,14 +20,10 @@ public class Player {
 	private Number profilestate;
 	private String profileurl;
 	private Number timecreated;
-   	private String gameextrainfo;
-   	private String gameid;
-   	private String gameserverip;
-   	private String gameserversteamid;
-   	private String loccountrycode;
-   	private String locstatecode;
-   	private String realname;
-   	private String loccityid;
+	private String gameextrainfo;
+	private String gameid;
+	private String gameserverip;
+	private String gameserversteamid;
 
 	@Override
 	public String toString() {
@@ -168,35 +167,4 @@ public class Player {
 		this.gameserversteamid = gameserversteamid;
 	}
 
-	public String getLoccountrycode() {
-		return loccountrycode;
-	}
-
-	public void setLoccountrycode(String loccountrycode) {
-		this.loccountrycode = loccountrycode;
-	}
-
-	public String getLocstatecode() {
-		return locstatecode;
-	}
-
-	public void setLocstatecode(String locstatecode) {
-		this.locstatecode = locstatecode;
-	}
-
-	public String getRealname() {
-		return realname;
-	}
-
-	public void setRealname(String realname) {
-		this.realname = realname;
-	}
-
-	public String getLoccityid() {
-		return loccityid;
-	}
-
-	public void setLoccityid(String loccityid) {
-		this.loccityid = loccityid;
-	}
 }
