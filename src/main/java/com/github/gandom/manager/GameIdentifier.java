@@ -30,7 +30,7 @@ public class GameIdentifier {
 		for (Game game : games) {
 			split.add(game);
 			i++;
-			if (i % 20 == 0) {
+			if (i % 30 == 0) {
 				resolvedGames.addAll(convertToPojo(sendRequest(split)));
 				split.clear();
 			}
