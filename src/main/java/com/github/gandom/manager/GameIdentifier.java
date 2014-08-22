@@ -21,7 +21,7 @@ public class GameIdentifier {
 
 	private static String url = "http://store.steampowered.com/api/appdetails?appids=";
 
-	public Set<Data> resolveGames(Set<Game> games) throws JSONException,
+	public static Set<Data> resolveGames(Set<Game> games) throws JSONException,
 			IOException {
 		Set<Data> resolvedGames = new HashSet<Data>();
 		Set<Game> split = new HashSet<Game>();
@@ -41,7 +41,7 @@ public class GameIdentifier {
 		return resolvedGames;
 	}
 
-	private Collection<Data> convertToPojo(JSONObject storeobject)
+	private static Collection<Data> convertToPojo(JSONObject storeobject)
 			throws JsonParseException, JsonMappingException, IOException {
 		Set<Data> bundle = new HashSet<Data>();
 		JSONObject zw = new JSONObject();
@@ -56,7 +56,7 @@ public class GameIdentifier {
 		return bundle;
 	}
 
-	private JSONObject sendRequest(Set<Game> games) throws JSONException,
+	private static JSONObject sendRequest(Set<Game> games) throws JSONException,
 			IOException {
 		StringBuilder appIds = new StringBuilder().append(url);
 
@@ -69,7 +69,7 @@ public class GameIdentifier {
 		return JsonReader.readJsonFromUrl(appIds.toString());
 	}
 
-	private Data mappOnDataPojo(JSONObject jsonObject)
+	private static Data mappOnDataPojo(JSONObject jsonObject)
 			throws JsonParseException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 

@@ -23,7 +23,7 @@ public class myTester {
 		// Sisores: 76561197983850468
 		// Daniel: 76561198141599131
 
-		String steamId = "76561198034249290";
+		String steamId = "76561198141599131";
 		System.out.println("\n--##-- Generating UserOne --##--");
 		
 		User userOne = GenerateUser.User(steamId);
@@ -61,25 +61,19 @@ public class myTester {
 		}
 		
 		System.out.println("\n");
-		System.out.println("--##-- resolve all "+userOne.getGames().size()+" games from UserOne--##--");
-		GameIdentifier idf = new GameIdentifier();
+		System.out.println("--##-- resolve games --##--");
 
 		Set<Data> bla = new HashSet<Data>();
 		try {
-			bla = idf.resolveGames(userOne.getGames());
+			bla = GameIdentifier.resolveGames(same);
 		} catch (JSONException | IOException e) {
 			e.printStackTrace();
 		}
 
-		int i = 0;
-		
 		System.out.println("\n--##-- Listing resolved Games --##--");
 		for (Data data : bla) {
-			i++;
-			if(i%5 == 0){
-				System.out.println(" ");
-			}
 			System.out.print(data.getName() + " ### ");
+			System.out.println(data.getCategories());
 		}
 
 		long end = System.nanoTime();
