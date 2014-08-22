@@ -10,7 +10,6 @@ import org.json.JSONObject;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.TreeTraversingParser;
 import com.github.gandom.data.Game;
@@ -45,16 +44,12 @@ public class GameIdentifier {
 	private Collection<Data> convertToPojo(JSONObject storeobject)
 			throws JsonParseException, JsonMappingException, IOException {
 		Set<Data> bundle = new HashSet<Data>();
-		ObjectMapper mapper = new ObjectMapper();
 		JSONObject zw = new JSONObject();
 
 		for (Object object : storeobject.keySet()) {
 			zw = (JSONObject) storeobject.get(object.toString());
 			if (zw.get("success").toString() == "true") {
-				JsonNode node = JsonConverter.convertJsonFormat((JSONObject) zw
-						.get("data"));
-				bundle.add(mapper.readValue(new TreeTraversingParser(node),
-						Data.class));
+				bundle.add(mappOnDataPojo((JSONObject) zw.get("data")));
 			}
 		}
 
@@ -72,5 +67,14 @@ public class GameIdentifier {
 		System.out.println(appIds);
 
 		return JsonReader.readJsonFromUrl(appIds.toString());
+	}
+
+	private Data mappOnDataPojo(JSONObject jsonObject)
+			throws JsonParseException, JsonMappingException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+
+		return mapper.readValue(
+				new TreeTraversingParser(JsonConverter
+						.convertJsonFormat(jsonObject)), Data.class);
 	}
 }

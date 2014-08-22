@@ -30,7 +30,9 @@ public class GenerateUser {
 
 	public static User User(String steamid) {
 		User user = new User();
+		
 		user.setSteamId(steamid);
+		
 		try {
 			user.setFriendlist(provideFriendlist(steamid));
 			user.setGames(provideGameList(steamid));

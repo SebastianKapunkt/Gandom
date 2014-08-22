@@ -23,7 +23,7 @@ public class myTester {
 		// Sisores: 76561197983850468
 		// Daniel: 76561198141599131
 
-		String steamId = "76561198141599131";
+		String steamId = "76561197985815246";
 		System.out.println("\n--##-- Generating UserOne --##--");
 		
 		User userOne = GenerateUser.User(steamId);
