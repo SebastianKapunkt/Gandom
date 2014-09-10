@@ -11,25 +11,23 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Data {
 	private String about_the_game;
 	private Achievements achievements;
-	private List<?> categories;
+	private List<Categories> categories;
 	private String controller_support;
 	private String detailed_description;
 	private List<?> developers;
 	private List<?> dlc;
 	private String drm_notice;
-	private List<?> genres;
+	private List<Genres> genres;
 	private String header_image;
 	private Metacritic metacritic;
 	private String name;
-	private List<?> package_groups;
-	private List<?> packages;
 	private Platforms platforms;
 	private Price_overview price_overview;
 	private List<?> publishers;
 	private Release_date release_date;
 	private Number required_age;
 	private String reviews;
-	private List<?> screenshots;
+	private List<Screenshots> screenshots;
 	private Number steam_appid;
 	private Support_info support_info;
 	private String supported_languages;
@@ -59,11 +57,11 @@ public class Data {
 		this.achievements = achievements;
 	}
 
-	public List<?> getCategories() {
+	public List<Categories> getCategories() {
 		return this.categories;
 	}
 
-	public void setCategories(List<?> categories) {
+	public void setCategories(List<Categories> categories) {
 		this.categories = categories;
 	}
 
@@ -103,7 +101,7 @@ public class Data {
 		return this.genres;
 	}
 
-	public void setGenres(List<?> genres) {
+	public void setGenres(List<Genres> genres) {
 		this.genres = genres;
 	}
 
@@ -131,22 +129,6 @@ public class Data {
 		this.name = name;
 	}
 
-	public List<?> getPackage_groups() {
-		return this.package_groups;
-	}
-
-	public void setPackage_groups(List<?> package_groups) {
-		this.package_groups = package_groups;
-	}
-
-	public List<?> getPackages() {
-		return this.packages;
-	}
-
-	public void setPackages(List<?> packages) {
-		this.packages = packages;
-	}
-	
 	public Platforms getPlatforms() {
 		return this.platforms;
 	}
@@ -199,7 +181,7 @@ public class Data {
 		return this.screenshots;
 	}
 
-	public void setScreenshots(List<?> screenshots) {
+	public void setScreenshots(List<Screenshots> screenshots) {
 		this.screenshots = screenshots;
 	}
 
