@@ -7,7 +7,8 @@ import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
 
-import com.github.gandom.manager.GameIdentiferMT;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.github.gandom.manager.GameIdentifier;
 import com.github.gandom.manager.GenerateUser;
 import com.github.gandom.manager.UserOperations;
@@ -17,18 +18,21 @@ import com.github.gandom.data.Game;
 import com.github.gandom.data.User;
 
 public class myTester {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws JsonParseException,
+			JsonMappingException, IOException {
 
+		long start = System.nanoTime();
 		// 3k games: 76561197987370777
 		// meine: 76561198034249290
 		// alex: 76561197985815246
 		// Sisores: 76561197983850468
 		// Daniel: 76561198141599131
 
-		String steamId = "76561198034249290";
+		String steamId = "76561197985815246";
 		System.out.println("\n--##-- Generating UserOne --##--");
 
-		User userOne = GenerateUser.User(steamId);
+		User userOne;
+		userOne = GenerateUser.User(steamId);
 
 		System.out.println("\n--##-- Generating UserTwo --##--");
 		steamId = "76561198034249290";
@@ -65,11 +69,9 @@ public class myTester {
 		System.out.println("\n");
 		System.out.println("--##-- resolve games --##--");
 
-		long start = System.nanoTime();
-		
 		Set<Data> bla = new HashSet<Data>();
 		try {
-			bla = GameIdentiferMT.resolveGames(userOne.getGames());
+			bla = GameIdentifier.resolveGames(userOne.getGames());
 		} catch (JSONException | IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
