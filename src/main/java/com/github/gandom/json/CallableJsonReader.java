@@ -13,20 +13,8 @@ public class CallableJsonReader implements Callable<JSONObject>{
 		System.out.println(url);
 		return JsonReader.readJsonFromUrl(url);
 	}
-
-	public CallableJsonReader() {
-		url = null;
-	}
 	
 	public CallableJsonReader(String url){
-		this.url = url;
-	}
-	
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
 		this.url = url;
 	}
 	
