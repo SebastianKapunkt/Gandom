@@ -10,11 +10,9 @@ import org.json.JSONObject;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.TreeTraversingParser;
 import com.github.gandom.data.Game;
-import com.github.gandom.json.JsonConverter;
 import com.github.gandom.json.JsonReader;
+import com.github.gandom.json.JsonToPojo;
 import com.github.gandom.steam.game.Data;
 
 public class GameIdentifier {
@@ -49,7 +47,7 @@ public class GameIdentifier {
 		for (Object object : storeobject.keySet()) {
 			zw = (JSONObject) storeobject.get(object.toString());
 			if (zw.get("success").toString() == "true") {
-				bundle.add(mappOnDataPojo((JSONObject) zw.get("data")));
+				bundle.add((Data) JsonToPojo.mapOnPojo((JSONObject) zw.get("data"), new Data()));
 			}
 		}
 
@@ -67,14 +65,5 @@ public class GameIdentifier {
 		System.out.println(appIds);
 
 		return JsonReader.readJsonFromUrl(appIds.toString());
-	}
-
-	private static Data mappOnDataPojo(JSONObject jsonObject)
-			throws JsonParseException, JsonMappingException, IOException {
-		ObjectMapper mapper = new ObjectMapper();
-
-		return mapper.readValue(
-				new TreeTraversingParser(JsonConverter
-						.convertJsonFormat(jsonObject)), Data.class);
 	}
 }
