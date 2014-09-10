@@ -20,74 +20,58 @@ import com.github.gandom.steam.data.SteamApiKey;
 
 public class GenerateUser {
 
-	private static String Summaries = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key="
+	private static String summaries = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key="
 			+ SteamApiKey.getSteamApiKey() + "&steamids=";
-	private static String OwnedGames = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key="
+	private static String ownedGames = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key="
 			+ SteamApiKey.getSteamApiKey() + "&steamid=";
-	private static String Friendlist = "http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key="
+	private static String friendlist = "http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key="
 			+ SteamApiKey.getSteamApiKey() + "&steamid=";
 
-	public static User User(String steamid) {
+	public static User User(String steamid) throws JsonParseException, JsonMappingException, IOException {
 		User user = new User();
 
 		user.setSteamId(steamid);
 
-		try {
-			user.setFriendlist(provideFriendlist(steamid));
-			user.setGames(provideGameList(steamid));
-			user.setPlayer(providePlayer(steamid));
-		} catch (JSONException | IOException e) {
-			e.printStackTrace();
-		}
+		user.setFriendlist(provideFriendlist(friendlist + steamid));
+		user.setGames(provideGameList(ownedGames + steamid));
+		user.setPlayer(providePlayer(summaries + steamid));
 
 		return user;
 	}
 
-	private static Player providePlayer(String steamid)
-			throws JsonParseException, JsonMappingException, JSONException,
-			IOException {
+	private static Player providePlayer(String url) throws JsonParseException,
+			JsonMappingException, JSONException, IOException {
 
-		String summaries = GenerateUser.Summaries + steamid;
+		System.out.println(url);
 
-		System.out.println(summaries);
-
-		ResponseFromPlayer response = new ResponseFromPlayer();
-
-		response = (ResponseFromPlayer) JsonToPojo.mapOnPojo(
-				JsonReader.readJsonFromUrl(summaries), new ResponseFromPlayer());
+		ResponseFromPlayer response = (ResponseFromPlayer) JsonToPojo
+				.mapOnPojo(JsonReader.readJsonFromUrl(url),
+						new ResponseFromPlayer());
 
 		return response.getResponse().getPlayers().iterator().next();
 	}
 
-	private static Set<Game> provideGameList(String steamid)
+	private static Set<Game> provideGameList(String url)
 			throws JsonParseException, JsonMappingException, JSONException,
 			IOException {
 
-		String ownedGames = GenerateUser.OwnedGames + steamid;
+		System.out.println(url);
 
-		System.out.println(ownedGames);
-
-		ResponseFromGame response = new ResponseFromGame();
-
-		response = (ResponseFromGame) JsonToPojo.mapOnPojo(
-				JsonReader.readJsonFromUrl(ownedGames), new ResponseFromGame());
+		ResponseFromGame response = (ResponseFromGame) JsonToPojo.mapOnPojo(
+				JsonReader.readJsonFromUrl(url), new ResponseFromGame());
 
 		return response.getResponse().getGames();
 	}
 
-	private static Set<Friend> provideFriendlist(String steamid)
+	private static Set<Friend> provideFriendlist(String url)
 			throws JsonParseException, JsonMappingException, IOException {
 
-		String friendlist = GenerateUser.Friendlist + steamid;
+		System.out.println(url);
 
-		System.out.println(friendlist);
+		ResponseFromFriendlist response = (ResponseFromFriendlist) JsonToPojo
+				.mapOnPojo(JsonReader.readJsonFromUrl(url),
+						new ResponseFromFriendlist());
 
-		ResponseFromFriendlist response = new ResponseFromFriendlist();
-
-		response = (ResponseFromFriendlist) JsonToPojo.mapOnPojo(
-				JsonReader.readJsonFromUrl(friendlist),
-				new ResponseFromFriendlist());
-		
 		return response.getFriendslist().getFriends();
 	}
 
