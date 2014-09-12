@@ -14,6 +14,7 @@ import com.github.gandom.manager.GenerateUser;
 import com.github.gandom.manager.UserOperations;
 import com.github.gandom.steam.game.Categories;
 import com.github.gandom.steam.game.Data;
+import com.github.gandom.steam.game.Genres;
 import com.github.gandom.data.Game;
 import com.github.gandom.data.User;
 
@@ -28,7 +29,7 @@ public class myTester {
 		// Sisores: 76561197983850468
 		// Daniel: 76561198141599131
 
-		String steamId = "76561197985815246";
+		String steamId = "76561198034249290";
 		System.out.println("\n--##-- Generating UserOne --##--");
 
 		User userOne;
@@ -88,6 +89,14 @@ public class myTester {
 				for (Categories cat : data.getCategories()) {
 					if (!(cat.getDescription() == "")) {
 						System.out.print(cat.getDescription() + " ");
+					}
+				}
+				System.out.print(" ### ");
+				if (data.getGenres() != null) {
+					for (Genres genre : data.getGenres()) {
+						if (!(genre.getDescription() == "")) {
+							System.out.print(genre.getDescription() + " ");
+						}
 					}
 				}
 			}
