@@ -97,7 +97,7 @@ public class Data {
 		this.drm_notice = drm_notice;
 	}
 
-	public List<?> getGenres() {
+	public List<Genres> getGenres() {
 		return this.genres;
 	}
 
