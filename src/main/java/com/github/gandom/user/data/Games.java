@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Games {
+	private String steamid;
 	private Number game_count;
 	private List<Game> games;
 
@@ -23,5 +24,13 @@ public class Games {
 
 	public void setGames(List<Game> games) {
 		this.games = games;
+	}
+
+	public String getSteamid() {
+		return steamid;
+	}
+
+	public void setSteamid(String steamid) {
+		this.steamid = steamid;
 	}
 }
