@@ -2,6 +2,9 @@ package com.github.gandom.steam.game;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Package_groups {
 	private String description;
 	private String display_type;

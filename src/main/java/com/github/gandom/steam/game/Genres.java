@@ -1,5 +1,8 @@
 package com.github.gandom.steam.game;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Genres {
 	private String description;
 	private String id;

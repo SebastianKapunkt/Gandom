@@ -1,8 +1,5 @@
-package com.github.gandom.steam.game;
+package com.github.gandom.steam.app;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Release_date {
 	private boolean coming_soon;
 	private String date;

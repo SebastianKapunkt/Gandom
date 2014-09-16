@@ -1,8 +1,5 @@
-package com.github.gandom.steam.game;
+package com.github.gandom.steam.app;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Highlighted {
 	private String name;
 	private String path;
