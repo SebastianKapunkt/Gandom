@@ -1,6 +1,6 @@
 package com.github.gandom.user.data;
 
-import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -8,8 +8,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Games {
 	private String steamid;
 	private Number game_count;
-	private List<Game> games;
+	private Set<Game> games;
 
+	public Games(){
+		steamid = null;
+	}
+	
+	public Games(String steamid){
+		this.steamid = steamid;
+	}
+	
 	public Number getGame_count() {
 		return this.game_count;
 	}
@@ -18,11 +26,11 @@ public class Games {
 		this.game_count = game_count;
 	}
 
-	public List<Game> getGames() {
+	public Set<Game> getGames() {
 		return this.games;
 	}
 
-	public void setGames(List<Game> games) {
+	public void setGames(Set<Game> games) {
 		this.games = games;
 	}
 
