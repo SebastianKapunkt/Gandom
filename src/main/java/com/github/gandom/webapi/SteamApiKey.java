@@ -1,4 +1,4 @@
-package com.github.gandom.steam.data;
+package com.github.gandom.webapi;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,7 +15,6 @@ public class SteamApiKey {
 			steamApiKey = reader.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();
-
 		}
 		return steamApiKey;
 	}
