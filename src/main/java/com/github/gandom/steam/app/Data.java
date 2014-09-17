@@ -2,6 +2,9 @@ package com.github.gandom.steam.app;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Data {
 	private String about_the_game;
 	private Achievements achievements;
@@ -18,7 +21,7 @@ public class Data {
 	private List<String> publishers;
 	private Release_date release_date;
 	private Number required_age;
-	private List<String> screenshots;
+	private List<?> screenshots;
 	private String steam_appid;
 	private Support_info support_info;
 	private String supported_languages;
@@ -145,11 +148,11 @@ public class Data {
 		this.required_age = required_age;
 	}
 
-	public List<String> getScreenshots() {
+	public List<?> getScreenshots() {
 		return this.screenshots;
 	}
 
-	public void setScreenshots(List<String> screenshots) {
+	public void setScreenshots(List<?> screenshots) {
 		this.screenshots = screenshots;
 	}
 

@@ -1,7 +1,4 @@
-package com.github.gandom.data;
-
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+package com.github.gandom.user.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -9,12 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Game {
 	private Number appid;
 	private Number playtime_forever;
-
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.toString(this,
-				ToStringStyle.MULTI_LINE_STYLE);
-	}
 
 	@Override
 	public int hashCode() {
@@ -45,7 +36,7 @@ public class Game {
 		}
 		return true;
 	}
-
+	
 	public Number getAppid() {
 		return this.appid;
 	}
@@ -61,5 +52,4 @@ public class Game {
 	public void setPlaytime_forever(Number playtime_forever) {
 		this.playtime_forever = playtime_forever;
 	}
-
 }

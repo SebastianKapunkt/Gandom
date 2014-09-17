@@ -1,5 +1,8 @@
 package com.github.gandom.steam.app;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Support_info {
 	private String email;
 	private String url;

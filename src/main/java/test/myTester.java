@@ -12,11 +12,14 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.github.gandom.manager.GameIdentifier;
 import com.github.gandom.manager.GenerateUser;
 import com.github.gandom.manager.UserOperations;
-import com.github.gandom.steam.game.Categories;
-import com.github.gandom.steam.game.Data;
-import com.github.gandom.steam.game.Genres;
-import com.github.gandom.data.Game;
-import com.github.gandom.data.User;
+import com.github.gandom.steam.app.Categories;
+import com.github.gandom.steam.app.Data;
+import com.github.gandom.steam.app.Genres;
+import com.github.gandom.user.data.Friend;
+import com.github.gandom.user.data.Friendslist;
+import com.github.gandom.user.data.Game;
+import com.github.gandom.user.data.Games;
+import com.github.gandom.user.data.Userlist;
 
 public class myTester {
 	public static void main(String[] args) throws JsonParseException,
@@ -32,19 +35,38 @@ public class myTester {
 		String steamId = "76561198034249290";
 		System.out.println("\n--##-- Generating UserOne --##--");
 
-		User userOne;
-		userOne = GenerateUser.User(steamId);
+		Userlist userlist = new Userlist();
+		userlist = GenerateUser.providePlayer(steamId);
+		Friendslist friendlist = new Friendslist();
+		friendlist = GenerateUser.provideFriendlist(steamId);
+		Games games = new Games();
+		games = GenerateUser.provideGameList(steamId);
 
 		System.out.println("\n--##-- Generating UserTwo --##--");
-		steamId = "76561198034249290";
-		User userTwo = GenerateUser.User(steamId);
+		steamId = "76561197985815246";
+		Userlist userlist2 = new Userlist();
+		userlist2 = GenerateUser.providePlayer(steamId);
+		Friendslist friendlist2 = new Friendslist();
+		friendlist2 = GenerateUser.provideFriendlist(steamId);
+		Games games2 = new Games();
+		games2 = GenerateUser.provideGameList(steamId);
+
+		System.out.println("\n"+ userlist.getPlayers().get(0).getPersonaname() +" games");
+		for (Game game : games.getGames()) {
+			System.out.print(game.getAppid().toString() + "\t");
+		}
+		
+		System.out.println("\n"+ userlist2.getPlayers().get(0).getPersonaname() +" games");
+		for (Game game : games2.getGames()) {
+			System.out.print(game.getAppid().toString() + "\t");
+		}
 
 		System.out.println("\n--##-- Comparing User´s gamelist --##--");
 		Set<Game> same = new HashSet<Game>();
 		Set<Game> diff = new HashSet<Game>();
 
-		same.addAll(UserOperations.equalCompareGameList(userOne, userTwo));
-		diff.addAll(UserOperations.unequalComparedGameList(userOne, userTwo));
+		same.addAll(UserOperations.equalCompareGameList(games, games2));
+		diff.addAll(UserOperations.unequalComparedGameList(games, games2));
 
 		System.out.println("\nSame: " + same.size());
 		for (Game game : same) {
@@ -52,27 +74,27 @@ public class myTester {
 		}
 
 		System.out.println("\nDiff: " + diff.size() + " "
-				+ (userTwo.getGames().size() - same.size()));
+				+ ((int) games2.getGame_count() - same.size()));
 		for (Game game : diff) {
 			System.out.print(game.getAppid().toString() + "\t");
 		}
 
-		System.out.println("\nUserOne´s games");
-		for (Game game : userOne.getGames()) {
-			System.out.print(game.getAppid().toString() + "\t");
+		System.out.println("\nFriendlist from "+ userlist.getPlayers().get(0).getPersonaname() +": ");
+		for (Friend friend : friendlist.getFriends()) {
+			System.out.print(friend.getSteamid().toString() + "\t");
 		}
-
-		System.out.println("\nUserTwo´s games");
-		for (Game game : userTwo.getGames()) {
-			System.out.print(game.getAppid().toString() + "\t");
+		
+		System.out.println("\nFriendlist from "+ userlist2.getPlayers().get(0).getPersonaname() +": ");
+		for (Friend friend : friendlist2.getFriends()) {
+			System.out.print(friend.getSteamid().toString() + "\t");
 		}
-
+		
 		System.out.println("\n");
 		System.out.println("--##-- resolve games --##--");
 
 		Set<Data> bla = new HashSet<Data>();
 		try {
-			bla = GameIdentifier.resolveGames(userOne.getGames());
+			bla = GameIdentifier.resolveGames(games.getGames());
 		} catch (JSONException | IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {

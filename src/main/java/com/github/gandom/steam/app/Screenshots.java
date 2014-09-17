@@ -1,5 +1,8 @@
 package com.github.gandom.steam.app;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Screenshots {
 	private Number id;
 	private String path_full;

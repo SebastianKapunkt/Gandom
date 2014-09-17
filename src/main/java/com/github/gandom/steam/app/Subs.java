@@ -1,5 +1,8 @@
 package com.github.gandom.steam.app;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Subs {
 	private String can_get_free_license;
 	private String option_description;

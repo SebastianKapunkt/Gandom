@@ -2,6 +2,9 @@ package com.github.gandom.steam.app;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Achievements {
 	private List<Highlighted> highlighted;
 	private Number total;
