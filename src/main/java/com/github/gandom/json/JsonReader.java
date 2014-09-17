@@ -28,6 +28,9 @@ public class JsonReader{
 		try {
 			BufferedReader rd = new BufferedReader(new InputStreamReader(is,
 					Charset.forName("UTF-8")));
+			
+			System.out.println("done");
+			
 			String jsonText = readAll(rd);
 			JSONObject json = new JSONObject(jsonText);
 			return json;
