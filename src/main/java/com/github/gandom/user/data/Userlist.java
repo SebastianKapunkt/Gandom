@@ -8,11 +8,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Userlist {
 	private List<User> Userlist;
 
-	public List<User> getPlayers() {
+	public List<User> getUserlist() {
 		return this.Userlist;
 	}
 
-	public void setPlayers(List<User> players) {
+	public void setUserlist(List<User> players) {
 		this.Userlist = players;
 	}
 }

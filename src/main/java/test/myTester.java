@@ -23,7 +23,8 @@ import com.github.gandom.user.data.Userlist;
 
 public class myTester {
 	public static void main(String[] args) throws JsonParseException,
-			JsonMappingException, IOException {
+			JsonMappingException, JSONException, IOException,
+			InterruptedException, ExecutionException {
 
 		long start = System.nanoTime();
 		// 3k games: 76561197987370777
@@ -50,22 +51,13 @@ public class myTester {
 		friendlist2 = GenerateUser.provideFriendlist(steamId);
 		Games games2 = new Games();
 		games2 = GenerateUser.provideGameList(steamId);
-		
-		System.out.println("\n--##-- Generating UserTwo --##--");
-		steamId = "76561197985815246";
-		Userlist userlist3 = new Userlist();
-		userlist3 = GenerateUser.providePlayer(steamId);
-		Friendslist friendlist3 = new Friendslist();
-		friendlist3 = GenerateUser.provideFriendlist(steamId);
-		Games games3 = new Games();
-		games3 = GenerateUser.provideGameList(steamId);
 
-		System.out.println("\n"+ userlist.getPlayers().get(0).getPersonaname() +" games");
+		System.out.println("\n"+ userlist.getUserlist().get(0).getPersonaname() +" games");
 		for (Game game : games.getGames()) {
 			System.out.print(game.getAppid().toString() + "\t");
 		}
 		
-		System.out.println("\n"+ userlist2.getPlayers().get(0).getPersonaname() +" games");
+		System.out.println("\n"+ userlist2.getUserlist().get(0).getPersonaname() +" games");
 		for (Game game : games2.getGames()) {
 			System.out.print(game.getAppid().toString() + "\t");
 		}
@@ -77,7 +69,6 @@ public class myTester {
 		Set<Games> usergames = new HashSet<Games>();
 		usergames.add(games);
 		usergames.add(games2);
-		usergames.add(games3);
 		
 		same.addAll(UserOperations.equalCompareGameList(usergames));
 		diff.addAll(UserOperations.unequalComparedGameList(usergames));
@@ -93,51 +84,44 @@ public class myTester {
 			System.out.print(game.getAppid().toString() + "\t");
 		}
 
-//		System.out.println("\nFriendlist from "+ userlist.getPlayers().get(0).getPersonaname() +": ");
-//		for (Friend friend : friendlist.getFriends()) {
-//			System.out.print(friend.getSteamid().toString() + "\t");
-//		}
-//		
-//		System.out.println("\nFriendlist from "+ userlist2.getPlayers().get(0).getPersonaname() +": ");
-//		for (Friend friend : friendlist2.getFriends()) {
-//			System.out.print(friend.getSteamid().toString() + "\t");
-//		}
-//		
-//		System.out.println("\n");
-//		System.out.println("--##-- resolve games --##--");
-//
-//		Set<Data> bla = new HashSet<Data>();
-//		try {
-//			bla = GameIdentifier.resolveGames(games.getGames());
-//		} catch (JSONException | IOException e) {
-//			e.printStackTrace();
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		} catch (ExecutionException e) {
-//			e.printStackTrace();
-//		}
-//
-//		System.out.println("\n--##-- Listing resolved Games --##--");
-//		for (Data data : bla) {
-//			System.out.print(data.getSteam_appid() + " # ");
-//			System.out.print(data.getName() + " ### ");
-//			if (data.getCategories() != null) {
-//				for (Categories cat : data.getCategories()) {
-//					if (!(cat.getDescription() == "")) {
-//						System.out.print(cat.getDescription() + " ");
-//					}
-//				}
-//				System.out.print(" ### ");
-//				if (data.getGenres() != null) {
-//					for (Genres genre : data.getGenres()) {
-//						if (!(genre.getDescription() == "")) {
-//							System.out.print(genre.getDescription() + " ");
-//						}
-//					}
-//				}
-//			}
-//			System.out.println();
-//		}
+		System.out.println("\nFriendlist from "+ userlist.getUserlist().get(0).getPersonaname() +": ");
+		for (Friend friend : friendlist.getFriends()) {
+			System.out.print(friend.getSteamid().toString() + "\t");
+		}
+		
+		System.out.println("\nFriendlist from "+ userlist2.getUserlist().get(0).getPersonaname() +": ");
+		for (Friend friend : friendlist2.getFriends()) {
+			System.out.print(friend.getSteamid().toString() + "\t");
+		}
+		
+		System.out.println("\n");
+		System.out.println("--##-- resolve games --##--");
+
+		Set<Data> bla = new HashSet<Data>();
+		bla = GameIdentifier.resolveGames(games.getGames());
+
+
+		System.out.println("\n--##-- Listing resolved Games --##--");
+		for (Data data : bla) {
+			System.out.print(data.getSteam_appid() + " # ");
+			System.out.print(data.getName() + " ### ");
+			if (data.getCategories() != null) {
+				for (Categories cat : data.getCategories()) {
+					if (!(cat.getDescription() == "")) {
+						System.out.print(cat.getDescription() + " ");
+					}
+				}
+				System.out.print(" ### ");
+				if (data.getGenres() != null) {
+					for (Genres genre : data.getGenres()) {
+						if (!(genre.getDescription() == "")) {
+							System.out.print(genre.getDescription() + " ");
+						}
+					}
+				}
+			}
+			System.out.println();
+		}
 
 		long end = System.nanoTime();
 		long elapsedTime = end - start;
