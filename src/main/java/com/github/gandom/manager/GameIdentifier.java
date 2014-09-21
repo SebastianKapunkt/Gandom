@@ -46,7 +46,7 @@ public class GameIdentifier {
 
 		holder.add(url + appIds.toString());
 
-		int threadNumber = 50;
+		int threadNumber = 5;
 
 		ExecutorService executor = Executors.newFixedThreadPool(threadNumber);
 		List<Future<JSONObject>> list = new ArrayList<Future<JSONObject>>();
