@@ -39,9 +39,12 @@ public class GenerateUser {
 		String url = ownedGames + steamid;
 
 		System.out.println(url);
-
-		return (Games) JsonToPojo.mapOnPojo(JsonReader.readJsonFromUrl(url).getJSONObject("response"),
-				new Games(steamid));
+		
+		Games games = (Games) JsonToPojo.mapOnPojo(JsonReader.readJsonFromUrl(url).getJSONObject("response"),
+				new Games());
+		games.setSteamid(steamid);
+		
+		return games;
 	}
 
 	public static Friendslist provideFriendlist(String steamid)
@@ -50,9 +53,12 @@ public class GenerateUser {
 		String url = friendlist + steamid;
 
 		System.out.println(url);
+		
+		Friendslist fl = (Friendslist) JsonToPojo.mapOnPojo(
+				JsonReader.readJsonFromUrl(url).getJSONObject("friendslist"), new Friendslist());
+		fl.setSteamid(steamid);		
 
-		return (Friendslist) JsonToPojo.mapOnPojo(
-				JsonReader.readJsonFromUrl(url).getJSONObject("friendslist"), new Friendslist(steamid));
+		return fl;
 	}
 
 }
