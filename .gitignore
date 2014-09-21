@@ -208,3 +208,5 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+
+src/main/java/test/myTester.java
