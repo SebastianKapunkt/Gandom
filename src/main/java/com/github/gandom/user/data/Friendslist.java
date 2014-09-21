@@ -9,15 +9,6 @@ public class Friendslist {
 	private String steamid;
 	private List<Friend> friends;
 
-	public Friendslist(){
-		steamid = null;
-		friends = null;
-	}
-	
-	public Friendslist(String steamid){
-		this.steamid = steamid;
-	}
-	
 	public List<Friend> getFriends() {
 		return this.friends;
 	}

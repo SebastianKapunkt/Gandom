@@ -10,14 +10,6 @@ public class Games {
 	private Number game_count;
 	private Set<Game> games;
 
-	public Games(){
-		steamid = null;
-	}
-	
-	public Games(String steamid){
-		this.steamid = steamid;
-	}
-	
 	public Number getGame_count() {
 		return this.game_count;
 	}
