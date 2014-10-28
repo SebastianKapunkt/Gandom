@@ -27,26 +27,20 @@ public class MyTester {
 		// alex: 76561197985815246
 		// Sisores: 76561197983850468
 		// Daniel: 76561198141599131
-		// Per: 76561197964008163;
+		// Oni Wab Kenobi: 76561197964008163;
 
 		String steamId = "76561197964008163";
 		System.out.println("\n--##-- Generating UserOne --##--");
 
-		User userOne = GenerateUser.providePlayer(steamId)
-				.getPlayers().get(0);
-		Games userOneGames = GenerateUser
-				.provideGameList(steamId);
-		Friendslist userOneFriends = GenerateUser
-				.provideFriendlist(steamId);
+		User userOne = GenerateUser.providePlayer(steamId).getPlayers().get(0);
+		Games userOneGames = GenerateUser.provideGameList(steamId);
+		Friendslist userOneFriends = GenerateUser.provideFriendlist(steamId);
 
 		System.out.println("\n--##-- Generating UserTwo --##--");
 		steamId = "76561198034249290";
-		User userTwo = GenerateUser.providePlayer(steamId)
-				.getPlayers().get(0);
-		Games userTwoGames = GenerateUser
-				.provideGameList(steamId);
-		Friendslist userTwoFriends = GenerateUser
-				.provideFriendlist(steamId);
+		User userTwo = GenerateUser.providePlayer(steamId).getPlayers().get(0);
+		Games userTwoGames = GenerateUser.provideGameList(steamId);
+		Friendslist userTwoFriends = GenerateUser.provideFriendlist(steamId);
 
 		System.out.println("\n--##-- Comparing User´s gamelist --##--");
 		Set<Game> same = new HashSet<Game>();
@@ -57,7 +51,7 @@ public class MyTester {
 		requiredGames.add(userTwoGames);
 
 		same.addAll(UserOperations.equalCompareGameList(requiredGames));
-		same.addAll(UserOperations.unequalComparedGameList(requiredGames));
+		diff.addAll(UserOperations.unequalComparedGameList(requiredGames));
 
 		System.out.println("\nSame: " + same.size());
 		for (Game game : same) {
@@ -70,17 +64,19 @@ public class MyTester {
 			System.out.print(game.getAppid().toString() + "\t");
 		}
 
-		System.out.println("\nUserOne´s games");
+		System.out.println("\nUserOne´s games "
+				+ userOneGames.getGames().size());
 		for (Game game : userOneGames.getGames()) {
 			System.out.print(game.getAppid().toString() + "\t");
 		}
 
-		System.out.println("\nUserTwo´s games");
+		System.out.println("\nUserTwo´s games "
+				+ userTwoGames.getGames().size());
 		for (Game game : userTwoGames.getGames()) {
 			System.out.print(game.getAppid().toString() + "\t");
 		}
 
-/*		System.out.println("\n");
+		System.out.println("\n");
 		System.out.println("--##-- resolve games --##--");
 
 		Set<Data> bla = new HashSet<Data>();
@@ -114,7 +110,7 @@ public class MyTester {
 				}
 			}
 			System.out.println();
-		}*/
+		}
 
 		long end = System.nanoTime();
 		long elapsedTime = end - start;
