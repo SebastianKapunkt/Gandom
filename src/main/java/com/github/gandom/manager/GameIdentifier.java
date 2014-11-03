@@ -14,8 +14,6 @@ import java.util.concurrent.Future;
 
 import org.json.JSONObject;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.github.gandom.json.CallableJsonReader;
 import com.github.gandom.json.JsonToPojo;
 import com.github.gandom.steam.app.Data;
