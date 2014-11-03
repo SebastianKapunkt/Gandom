@@ -22,8 +22,7 @@ public class GenerateUser {
 	private static String friendlist = "http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key="
 			+ SteamApiKey.getSteamApiKey() + "&steamid=";
 
-	public static Userlist providePlayer(String steamid) throws JsonParseException,
-			JsonMappingException, JSONException, IOException {
+	public static Userlist providePlayer(String steamid) throws JSONException, IOException {
 
 		String url = summaries + steamid;
 
@@ -33,8 +32,7 @@ public class GenerateUser {
 				new Userlist());
 	}
 
-	public static Games provideGameList(String steamid) throws JsonParseException,
-			JsonMappingException, JSONException, IOException {
+	public static Games provideGameList(String steamid) throws JSONException, IOException {
 
 		String url = ownedGames + steamid;
 
@@ -48,7 +46,7 @@ public class GenerateUser {
 	}
 
 	public static Friendslist provideFriendlist(String steamid)
-			throws JsonParseException, JsonMappingException, IOException {
+			throws JSONException, IOException {
 
 		String url = friendlist + steamid;
 
