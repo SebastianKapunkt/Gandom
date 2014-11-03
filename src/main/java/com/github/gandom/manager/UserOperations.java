@@ -17,24 +17,11 @@ public class UserOperations {
 		}
 
 		return same;
-//		Set<Game> same = new HashSet<Game>();
-//		Set<Game> storage = new HashSet<Game>();
-//		
-//		for (Games games : usergames) {
-//			storage.clear();
-//			if(same.isEmpty()){
-//				same.addAll(games.getGames());
-//			}
-//			storage.addAll(games.getGames());
-//			same.retainAll(storage);
-//		}
-//		
-//		return same;
 	}
 
 	public static Set<Game> unequalComparedGameList(Set<Games> usergames) {
-		Set<Game> same = new HashSet<Game>();
-		Set<Game> unequal = new HashSet<Game>();
+		Set<Game> same = new HashSet<>();
+		Set<Game> unequal = new HashSet<>();
 		same.addAll(equalCompareGameList(usergames));
 		
 		for (Games games : usergames) {
