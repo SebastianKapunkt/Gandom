@@ -6,7 +6,7 @@ import com.github.gandom.manager.UserOperations;
 import com.github.gandom.steam.app.Categories;
 import com.github.gandom.steam.app.Data;
 import com.github.gandom.steam.app.Genres;
-import com.github.gandom.user.data.Friendslist;
+import com.github.gandom.user.data.FriendsList;
 import com.github.gandom.user.data.Game;
 import com.github.gandom.user.data.Games;
 import com.github.gandom.user.data.User;
@@ -33,13 +33,13 @@ public class MyTester {
 
         User userOne = GenerateUser.providePlayer(steamId).getPlayers().get(0);
         Games userOneGames = GenerateUser.provideGameList(steamId);
-        Friendslist userOneFriends = GenerateUser.provideFriendlist(steamId);
+        FriendsList userOneFriends = GenerateUser.provideFriendList(steamId);
 
         System.out.println("\n--##-- Generating UserTwo --##--");
         steamId = "76561198034249290";
         User userTwo = GenerateUser.providePlayer(steamId).getPlayers().get(0);
         Games userTwoGames = GenerateUser.provideGameList(steamId);
-        Friendslist userTwoFriends = GenerateUser.provideFriendlist(steamId);
+        FriendsList userTwoFriends = GenerateUser.provideFriendList(steamId);
 
         System.out.println("\n--##-- Comparing User´s gamelist --##--");
         Set<Game> same = new HashSet<>();

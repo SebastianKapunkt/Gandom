@@ -8,23 +8,23 @@ import com.github.gandom.user.data.Games;
 
 public class UserOperations {
 
-	public static Set<Game> equalCompareGameList(Set<Games> usergames) {
-		Set<Game> same = new HashSet<Game>();
-		same.addAll(usergames.iterator().next().getGames());
+	public static Set<Game> equalCompareGameList(Set<Games> userGames) {
+		Set<Game> same = new HashSet<>();
+		same.addAll(userGames.iterator().next().getGames());
 		
-		for (Games games : usergames) {
+		for (Games games : userGames) {
 			same.retainAll(games.getGames());
 		}
 
 		return same;
 	}
 
-	public static Set<Game> unequalComparedGameList(Set<Games> usergames) {
+	public static Set<Game> unequalComparedGameList(Set<Games> userGames) {
 		Set<Game> same = new HashSet<>();
 		Set<Game> unequal = new HashSet<>();
-		same.addAll(equalCompareGameList(usergames));
+		same.addAll(equalCompareGameList(userGames));
 		
-		for (Games games : usergames) {
+		for (Games games : userGames) {
 			unequal.addAll(games.getGames());
 		}
 		
