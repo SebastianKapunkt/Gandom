@@ -212,3 +212,5 @@ $RECYCLE.BIN/
 *.msp
 
 src/main/java/test/myTester.java
+
+src/main/java/test/MyTester.java
