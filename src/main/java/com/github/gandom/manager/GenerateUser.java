@@ -51,7 +51,7 @@ public class GenerateUser {
 		System.out.println(url);
 		
 		FriendsList fl = (FriendsList) JsonToPojo.mapOnPojo(
-				JsonReader.readJsonFromUrl(url).getJSONObject("friends-list"), new FriendsList());
+				JsonReader.readJsonFromUrl(url).getJSONObject("friendslist"), new FriendsList());
 		fl.setSteamid(steamId);
 
 		return fl;
