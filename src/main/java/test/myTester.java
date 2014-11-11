@@ -20,7 +20,7 @@ import com.github.gandom.data.User;
 
 public class myTester {
 	public static void main(String[] args) throws JsonParseException,
-			JsonMappingException, IOException {
+			JsonMappingException, IOException, InterruptedException, ExecutionException {
 
 		long start = System.nanoTime();
 		// 3k games: 76561197987370777
@@ -38,51 +38,65 @@ public class myTester {
 		System.out.println("\n--##-- Generating UserTwo --##--");
 		steamId = "76561198034249290";
 		User userTwo = GenerateUser.User(steamId);
+		
+		Set<Game> games = new HashSet<>();
+		games.add(UserOperations.selectRandomGame(userOne.getGames()));
+		games.add(UserOperations.selectRandomGame(userOne.getGames()));
+		games.add(UserOperations.selectRandomGame(userOne.getGames()));
+		games.add(UserOperations.selectRandomGame(userOne.getGames()));
+		games.add(UserOperations.selectRandomGame(userOne.getGames()));
+		games.add(UserOperations.selectRandomGame(userOne.getGames()));
+		games.add(UserOperations.selectRandomGame(userOne.getGames()));
+		games.add(UserOperations.selectRandomGame(userOne.getGames()));
+		games.add(UserOperations.selectRandomGame(userOne.getGames()));
+		games.add(UserOperations.selectRandomGame(userOne.getGames()));
 
-		System.out.println("\n--##-- Comparing User´s gamelist --##--");
-		Set<Game> same = new HashSet<Game>();
-		Set<Game> diff = new HashSet<Game>();
-
-		same.addAll(UserOperations.equalCompareGameList(userOne, userTwo));
-		diff.addAll(UserOperations.unequalComparedGameList(userOne, userTwo));
-
-		System.out.println("\nSame: " + same.size());
-		for (Game game : same) {
-			System.out.print(game.getAppid().toString() + "\t");
-		}
-
-		System.out.println("\nDiff: " + diff.size() + " "
-				+ (userTwo.getGames().size() - same.size()));
-		for (Game game : diff) {
-			System.out.print(game.getAppid().toString() + "\t");
-		}
-
-		System.out.println("\nUserOne´s games");
-		for (Game game : userOne.getGames()) {
-			System.out.print(game.getAppid().toString() + "\t");
-		}
-
-		System.out.println("\nUserTwo´s games");
-		for (Game game : userTwo.getGames()) {
-			System.out.print(game.getAppid().toString() + "\t");
-		}
-
-		System.out.println("\n");
-		System.out.println("--##-- resolve games --##--");
-
-		Set<Data> bla = new HashSet<Data>();
-		try {
-			bla = GameIdentifier.resolveGames(userOne.getGames());
-		} catch (JSONException | IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-
+		Set<Data> gameInfo = GameIdentifier.resolveGames(games);
+		
+//		System.out.println("\n--##-- Comparing User´s gamelist --##--");
+//		Set<Game> same = new HashSet<Game>();
+//		Set<Game> diff = new HashSet<Game>();
+//
+//		same.addAll(UserOperations.equalCompareGameList(userOne, userTwo));
+//		diff.addAll(UserOperations.unequalComparedGameList(userOne, userTwo));
+//
+//		System.out.println("\nSame: " + same.size());
+//		for (Game game : same) {
+//			System.out.print(game.getAppid().toString() + "\t");
+//		}
+//
+//		System.out.println("\nDiff: " + diff.size() + " "
+//				+ (userTwo.getGames().size() - same.size()));
+//		for (Game game : diff) {
+//			System.out.print(game.getAppid().toString() + "\t");
+//		}
+//
+//		System.out.println("\nUserOne´s games");
+//		for (Game game : userOne.getGames()) {
+//			System.out.print(game.getAppid().toString() + "\t");
+//		}
+//
+//		System.out.println("\nUserTwo´s games");
+//		for (Game game : userTwo.getGames()) {
+//			System.out.print(game.getAppid().toString() + "\t");
+//		}
+//
+//		System.out.println("\n");
+//		System.out.println("--##-- resolve games --##--");
+//
+//		Set<Data> bla = new HashSet<Data>();
+//		try {
+//			bla = GameIdentifier.resolveGames(userOne.getGames());
+//		} catch (JSONException | IOException e) {
+//			e.printStackTrace();
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		} catch (ExecutionException e) {
+//			e.printStackTrace();
+//		}
+//
 		System.out.println("\n--##-- Listing resolved Games --##--");
-		for (Data data : bla) {
+		for (Data data : gameInfo) {
 			System.out.print(data.getSteam_appid() + " # ");
 			System.out.print(data.getName() + " ### ");
 			if (data.getCategories() != null) {

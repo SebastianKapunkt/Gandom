@@ -11,7 +11,7 @@ public class SteamApiKey {
 	public static String getSteamApiKey() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(
-					"/Users/TheDeveloper/Development/mySteamAPIKey.txt"));
+					"C:/Users/Visores/Google Drive/Privat/mySteamAPIKey.txt"));
 			steamApiKey = reader.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();
