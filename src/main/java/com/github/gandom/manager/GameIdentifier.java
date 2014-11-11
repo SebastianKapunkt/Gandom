@@ -21,14 +21,38 @@ import com.github.gandom.user.data.Game;
 
 public class GameIdentifier {
 
+	private static String url = "http://store.steampowered.com/api/appdetails?appids=";
+
 	public static Set<Data> resolveGames(Set<Game> games)
 			throws InterruptedException, IOException, ExecutionException {
 		Set<Data> resolvedGames = new HashSet<>();
 		Set<String> holder = new HashSet<>();
 
+		// for (Game game : games) {
+		// holder.add(url + game.getAppid());
+		// }
+
+		Set<Game> split = new HashSet<Game>();
+		StringBuilder appIds = new StringBuilder();
+		int i = 0, end = 1;
+
 		for (Game game : games) {
-			holder.add("http://store.steampowered.com/api/appdetails?appids=" + game.getAppid());
+			split.add(game);
+			i++;
+			if (!game.getAppid().equals("")) {
+				if (end++ == games.size() || i % 10 == 0) {
+					appIds.append(game.getAppid());
+				} else {
+					appIds.append(game.getAppid() + ",");
+				}
+			}
+			if (i % 10 == 0) {
+				holder.add(url + appIds.toString());
+				appIds.setLength(0);
+			}
 		}
+
+		holder.add(url + appIds.toString());
 
 		int threadNumber = 10;
 
@@ -44,7 +68,7 @@ public class GameIdentifier {
 		for (Future<JSONObject> future : list) {
 			resolvedGames.addAll(convertToPojo(future.get()));
 		}
-		
+
 		executor.shutdown();
 
 		return resolvedGames;
