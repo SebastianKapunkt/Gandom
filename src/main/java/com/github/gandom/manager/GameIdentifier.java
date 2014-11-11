@@ -34,25 +34,27 @@ public class GameIdentifier {
 
 		Set<Game> split = new HashSet<Game>();
 		StringBuilder appIds = new StringBuilder();
-		int i = 0, end = 1;
+		int i = 0, end = 1, amountOfIds = 5;
 
 		for (Game game : games) {
 			split.add(game);
 			i++;
-			if (!game.getAppid().equals("")) {
-				if (end++ == games.size() || i % 10 == 0) {
-					appIds.append(game.getAppid());
-				} else {
-					appIds.append(game.getAppid() + ",");
-				}
+
+			if (end++ == games.size() || i % amountOfIds == 0) {
+				appIds.append(game.getAppid());
+			} else {
+				appIds.append(game.getAppid() + ",");
 			}
-			if (i % 10 == 0) {
+			
+			if (i % amountOfIds == 0) {
 				holder.add(url + appIds.toString());
 				appIds.setLength(0);
 			}
 		}
 
-		holder.add(url + appIds.toString());
+		if (appIds.length() != 0) {
+			holder.add(url + appIds.toString());
+		}
 
 		int threadNumber = 10;
 
@@ -84,6 +86,8 @@ public class GameIdentifier {
 			if (zw.get("success").toString().equals("true")) {
 				bundle.add((Data) JsonToPojo.mapOnPojo(
 						(JSONObject) zw.get("data"), new Data()));
+			}else{
+				System.out.println("No Success "+object.toString());
 			}
 		}
 

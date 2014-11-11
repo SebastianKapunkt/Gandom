@@ -14,7 +14,7 @@ public class UserOperations {
 	public static Set<Game> equalCompareGameList(Set<Games> userGames) {
 		Set<Game> same = new HashSet<>();
 		same.addAll(userGames.iterator().next().getGames());
-		
+
 		for (Games games : userGames) {
 			same.retainAll(games.getGames());
 		}
@@ -26,18 +26,17 @@ public class UserOperations {
 		Set<Game> same = new HashSet<>();
 		Set<Game> unequal = new HashSet<>();
 		same.addAll(equalCompareGameList(userGames));
-		
+
 		for (Games games : userGames) {
 			unequal.addAll(games.getGames());
 		}
-		
+
 		unequal.removeAll(same);
-		
+
 		return unequal;
 	}
-	
-	public static Game selectRandomGame(Set<Game> games){
-		
+
+	public static Game selectRandomGame(Set<Game> games) {
 		List<Game> list = new ArrayList<>(games);
 		int size = games.size();
 
