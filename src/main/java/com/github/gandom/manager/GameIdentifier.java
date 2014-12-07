@@ -34,7 +34,7 @@ public class GameIdentifier {
 
 		Set<Game> split = new HashSet<Game>();
 		StringBuilder appIds = new StringBuilder();
-		int i = 0, end = 1, amountOfIds = 5;
+		int i = 0, end = 1, amountOfIds = 1;
 
 		for (Game game : games) {
 			split.add(game);
