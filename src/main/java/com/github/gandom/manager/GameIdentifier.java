@@ -28,10 +28,6 @@ public class GameIdentifier {
 		Set<Data> resolvedGames = new HashSet<>();
 		Set<String> holder = new HashSet<>();
 
-		// for (Game game : games) {
-		// holder.add(url + game.getAppid());
-		// }
-
 		Set<Game> split = new HashSet<Game>();
 		StringBuilder appIds = new StringBuilder();
 		int i = 0, end = 1, amountOfIds = 1;
